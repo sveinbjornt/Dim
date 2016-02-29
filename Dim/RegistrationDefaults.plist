@@ -1,0 +1,18 @@
+{
+    Create2xRepresentations = 1;
+    CurrentRepresentationView = 4;
+    DocumentIconEnabled = 1;
+    DocumentIconPath = "/System/Library/CoreServices/CoreTypes.bundle/Contents/Resources/GenericDocumentIcon.icns";
+    LabelFontSizePercentage = 100;
+    LabelFont = "Helvetica";
+    LabelColor = <040b7374 7265616d 74797065 6481e803 84014084 8484074e 53436f6c 6f720084 84084e53 4f626a65 63740085 84016304 84026666 837b14ae 3e0186>;
+    RepresentationBackgroundColor = <040b7374 7265616d 74797065 6481e803 84014084 8484074e 53436f6c 6f720084 84084e53 4f626a65 63740085 84016304 84026666 837b14ae 3e0186>;
+    LabelsEnabled = 1;
+    OverlayIconEnabled = 1;
+    OverlaySize = 50;
+    OverlayXOffset = 50;
+    OverlayYOffset = 50;
+    UseSharpening = 1;
+    RepresentationsViewHeight = 350;
+    SelectedRepresentation = 2;
+}

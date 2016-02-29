@@ -1,0 +1,9 @@
+
+
+* Sharpening for icons at small sizes
+* Command line tool
+* Shared class to draw icons
+* Export to icns or .iconset
+* Command line tool installer/uninstaller
+* Uninstall
+* Settings
