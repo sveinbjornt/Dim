@@ -100,7 +100,8 @@
 }
 
 - (IBAction)selectRepresentation:(id)sender {
-    [self selectRepresentationAtIndex:[sender intValue]];
+    NSInteger idx = [sender class] == [NSMenuItem class] ? [self.representationsMenu indexOfItem:sender] : [sender intValue];
+    [self selectRepresentationAtIndex:idx];
 }
 
 - (IBAction)increaseRepScale:(id)sender {
