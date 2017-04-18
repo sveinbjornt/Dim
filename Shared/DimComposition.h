@@ -10,9 +10,10 @@
 
 @interface DimComposition : NSObject
 
-
-
 @property BOOL forceAllResolutions;
+@property CGFloat overlaySize;
+@property CGFloat overlayXOffset;
+@property CGFloat overlayYOffset;
 
 - (instancetype)initWithBaseImage:(NSImage *)base overlayImage:(NSImage *)overlay;
 - (BOOL)createIconSetAtPath:(NSString *)path;

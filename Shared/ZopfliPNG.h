@@ -11,5 +11,6 @@
 @interface ZopfliPNG : NSObject
 
 + (BOOL)optimizePNGFileAtPath:(NSString *)path;
++ (BOOL)optimizePNGsInDirectory:(NSString *)directoryPath;
 
 @end

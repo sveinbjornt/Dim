@@ -18,7 +18,6 @@ NSRect CenterNSRectInNSRect(NSRect smallRect, NSRect bigRect) {
     centerRect.origin.y = (bigRect.size.height - smallRect.size.height) / 2.0;
     
     return (centerRect);
-    
 }
 
 CGFloat ScaleToAspectFitRectInRect(CGRect rfit, CGRect rtarget)

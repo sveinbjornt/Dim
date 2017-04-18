@@ -22,23 +22,25 @@
 #import "IconFamily.h"
 #import "ZopfliPNG.h"
 
-static void OptimizePNGsInDirectory(NSString *directory);
 static void PrintVersion(void);
 static void PrintHelp(void);
 static void NSPrintErr(NSString *format, ...);
 static void NSPrint(NSString *format, ...);
 
-static const char optstring[] = "b:l:iofhv";
+static const char optstring[] = "b:z:l:iofshv";
 
-static int generateIconset = NO; // default output is icns
+static int iconsetOnly = NO; // default output is both iconset and icns
+static int icnsOnly = NO;
 static int optimizeImages = NO; // crush pngs with zopfli
 static int overwrite = NO;
 
 static struct option long_options[] =
 {
     {"baseicon",                  required_argument,    0,                  'b'},
+    {"overlay-size",              required_argument,    0,                  'z'},
     {"labels",                    required_argument,    0,                  'l'},
-    {"generate-iconset",          no_argument,          0,                  'i'},
+    {"iconset-only",              no_argument,          0,                  's'},
+    {"icns-only",                 no_argument,          0,                  'i'},
     {"optimize-images",           no_argument,          0,                  'o'},
     {"force",                     no_argument,          0,                  'f'},
     {"version",                   no_argument,          0,                  'v'},
@@ -52,6 +54,7 @@ int main(int argc, const char * argv[]) { @autoreleasepool {
     NSString *baseIconPath = DEFAULT_DOCUMENT_ICON_PATH;
     NSMutableArray *labels = [NSMutableArray array];
     NSString *destination;
+    CGFloat overlaySize = DEFAULT_OVERLAY_SIZE;
     
     int optch;
     int long_index = 0;
@@ -82,11 +85,21 @@ int main(int argc, const char * argv[]) { @autoreleasepool {
             case 'f':
                 overwrite = YES;
                 break;
-            case 'i':
-                generateIconset = YES;
+                
+            case 's':
+                iconsetOnly = YES;
                 break;
+                
+            case 'i':
+                icnsOnly = YES;
+                break;
+                
             case 'o':
                 optimizeImages = YES;
+                break;
+            
+            case 'z':
+                overlaySize = [@(optarg) floatValue];
                 break;
             
             // print help with list of options
@@ -138,6 +151,9 @@ int main(int argc, const char * argv[]) { @autoreleasepool {
         exit(1);
     }
     
+    // configure composition based on parameters
+    composition.overlaySize = overlaySize;
+    
     // Create output path
     NSString *name = [[overlayIconPath lastPathComponent] stringByDeletingPathExtension];
     NSString *iconsetFileName = [NSString stringWithFormat:@"%@-Document.%@", name, @"iconset"];
@@ -159,76 +175,43 @@ int main(int argc, const char * argv[]) { @autoreleasepool {
         }
     }
     
-    // Generate output file(s)
-    
+    // Generate output files
     // first, create an iconset
     BOOL success = [composition createIconSetAtPath:destination];
     if (!success) {
         NSPrintErr(@"Error creating icon set %@", destination);
         exit(1);
     }
-    // secondly, transform the iconset into an icns file
-    NSString *icnsPath = [NSString stringWithFormat:@"%@/%@",
-                          [destination stringByDeletingLastPathComponent], icnsFileName];
+    if (iconsetOnly == NO) {
+        // create icns file from iconset
+        NSString *icnsPath = [NSString stringWithFormat:@"%@/%@",
+                              [destination stringByDeletingLastPathComponent], icnsFileName];
 
-    [DimComposition convertIconSet:destination toIcns:icnsPath];
-    
+        [DimComposition convertIconSet:destination toIcns:icnsPath];
+    }
     
     // Optimization
     if (optimizeImages) {
         NSPrint(@"Optimizing images in directory %@", destination);
-        OptimizePNGsInDirectory(destination);
+        [ZopfliPNG optimizePNGsInDirectory:destination];
+    }
+    
+    // Get rid of iconset if user wants icns only
+    if (icnsOnly) {
+        [fm removeItemAtPath:destination error:nil];
     }
 
 } return 0; }
-
-static void OptimizePNGsInDirectory(NSString *directoryPath) {
-    NSFileManager *fm = [NSFileManager defaultManager];
-    BOOL isDir = NO;
-    if (![fm fileExistsAtPath:directoryPath isDirectory:&isDir] || !isDir) {
-        NSPrintErr(@"Not a directory at path", directoryPath);
-        return;
-    }
-    
-    NSArray *dirFiles = [fm contentsOfDirectoryAtPath:directoryPath error:nil];
-    NSPredicate *pred = [NSPredicate predicateWithFormat:@"self ENDSWITH '.png'"];
-    NSArray *pngFiles = [dirFiles filteredArrayUsingPredicate:pred];
-    
-    unsigned long long originalTotalFileSize = 0;
-    unsigned long long optimizedTotalFileSize = 0;
-    
-    for (NSString *fn in pngFiles) {
-        
-        NSString *fullPath = [NSString stringWithFormat:@"%@/%@", directoryPath, fn];
-        
-        unsigned long long size = [[fm attributesOfItemAtPath:fullPath error:nil] fileSize];
-        originalTotalFileSize += size;
-        
-        [ZopfliPNG optimizePNGFileAtPath:fullPath];
-        
-        unsigned long long optSize = [[fm attributesOfItemAtPath:fullPath error:nil] fileSize];
-        optimizedTotalFileSize += optSize;
-        
-        if (size) {
-            float perc = 100.f - ((float)optSize / (float)size) * 100;
-            NSPrint(@"Optimizing %@: %d --> %d (-%.1f%%)", fn, size, optSize, perc);
-        }
-    }
-    
-    if (originalTotalFileSize) {
-        float perc = 100.f - ((float)optimizedTotalFileSize / (float)originalTotalFileSize) * 100;
-        NSPrint(@"Result for %d files: %d --> %d (-%.1f%%)",
-                [pngFiles count], originalTotalFileSize, optimizedTotalFileSize, perc);
-    }
-}
 
 static void PrintVersion(void) {
     NSPrint(@"dim version %@", PROGRAM_VERSION);
 }
 
 static void PrintHelp(void) {
-    
-    NSPrint(@"usage: dim overlayIcon [destination] [--labels one,two,three] [--baseicon iconPath] [--force]\n");
+    NSPrint(@"\
+usage: dim overlayIcon [destination] [--labels one,two,three] \
+[--baseicon iconPath] [--force]\n\
+");
 }
 
 #pragma mark -
@@ -242,10 +225,6 @@ static void NSPrint(NSString *format, ...) {
     va_end(args);
     
     fprintf(stdout, "%s\n", [string UTF8String]);
-    
-#if !__has_feature(objc_arc)
-    [string release];
-#endif
 }
 
 // print to stderr
@@ -257,9 +236,4 @@ static void NSPrintErr(NSString *format, ...) {
     va_end(args);
     
     fprintf(stderr, "%s\n", [string UTF8String]);
-    
-#if !__has_feature(objc_arc)
-    [string release];
-#endif
 }
-

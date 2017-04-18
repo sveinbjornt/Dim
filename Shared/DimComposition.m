@@ -32,6 +32,16 @@ static BOOL CGImageWriteToFile(CGImageRef image, NSString *path, NSString *image
     return YES;
 }
 
+static NSRect CenterNSRectInNSRect(NSRect smallRect, NSRect bigRect) {
+    NSRect centerRect;
+    centerRect.size = smallRect.size;
+    
+    centerRect.origin.x = (bigRect.size.width - smallRect.size.width) / 2.0;
+    centerRect.origin.y = (bigRect.size.height - smallRect.size.height) / 2.0;
+    
+    return (centerRect);
+}
+
 #pragma mark -
 
 @interface DimComposition()
@@ -47,6 +57,10 @@ static BOOL CGImageWriteToFile(CGImageRef image, NSString *path, NSString *image
     if ((self = [super init])) {
         baseImage = base;
         overlayImage = overlay;
+        _overlaySize = DEFAULT_OVERLAY_SIZE;
+        _overlayXOffset = 0.f;
+        _overlayYOffset = 0.f;
+        
         if (baseImage == nil || overlayImage == nil) {
             return nil;
         }
@@ -55,9 +69,6 @@ static BOOL CGImageWriteToFile(CGImageRef image, NSString *path, NSString *image
 }
 
 - (BOOL)createIconSetAtPath:(NSString *)destinationPath {
-//    NSMutableDictionary *images = [NSMutableDictionary dictionary];
-    
-    NSString *baseName = @"icon";//[[destinationPath lastPathComponent] stringByDeletingPathExtension];
     
     // Create destination iconset folder if it doesn't exist
     NSFileManager *fm = [NSFileManager defaultManager];
@@ -90,11 +101,13 @@ static BOOL CGImageWriteToFile(CGImageRef image, NSString *path, NSString *image
         NSString *identifier = [NSString stringWithFormat:@"%dx%d%@",
                                 (int)size.width, (int)size.height, scaleStr];
         
+        NSString *baseName = @"icon";
         NSString *outPath = [NSString stringWithFormat:@"%@/%@_%@.png", destinationPath, baseName, identifier];
         NSLog(@"Generating %@", outPath);
         
         CGImageRef img = [self newImageForSize:size scale:scale];
         CGImageWriteToFile(img, outPath, (NSString *)kUTTypePNG);
+        CGImageRelease(img);
     }
     
     return YES;
@@ -117,21 +130,24 @@ static BOOL CGImageWriteToFile(CGImageRef image, NSString *path, NSString *image
                                                  colorSpace,
                                                  kCGImageAlphaPremultipliedLast);
     
-    
-    // Draw ...
     CGContextSetRGBFillColor(context, (CGFloat)0.0, (CGFloat)0.0, (CGFloat)0.0, (CGFloat)0.0);
     
-    NSRect destRect = NSMakeRect(0, 0, width * scale, height * scale);
+    CGFloat overlayPropSize = self.overlaySize;
+    NSRect docRect = NSMakeRect(0, 0, width * scale, height * scale);
     
-    CGContextDrawImage(context, destRect, baseRep.CGImage);
-    CGContextDrawImage(context, destRect, overRep.CGImage);
+    // Scale down dest rect
+    NSRect overlaySizeRect = NSMakeRect(0, 0, overlayPropSize * docRect.size.width, overlayPropSize * docRect.size.height);
+    NSRect dstRect = CenterNSRectInNSRect(overlaySizeRect, docRect);
+
+    // Draw images
+    CGContextDrawImage(context, docRect, baseRep.CGImage);
+    CGContextDrawImage(context, dstRect, overRep.CGImage);
 
     // Get image from context
     CGImageRef cgImage = CGBitmapContextCreateImage(context);
     
     CGColorSpaceRelease(colorSpace);
     CGContextRelease(context);
-    
     
     return cgImage;
 }
@@ -150,9 +166,8 @@ static BOOL CGImageWriteToFile(CGImageRef image, NSString *path, NSString *image
     NSTask *task = [[NSTask alloc] init];
     task.launchPath = iconutilPath;
     task.arguments = @[@"--convert", @"icns", @"--output", outputIcnsPath, iconsetPath];
-    NSLog([task.arguments description]);
-//    task.standardOutput = [NSFileHandle fileHandleWithNullDevice];
-//    task.standardError = [NSFileHandle fileHandleWithNullDevice];
+    task.standardOutput = [NSFileHandle fileHandleWithNullDevice];
+    task.standardError = [NSFileHandle fileHandleWithNullDevice];
     [task launch];
     [task waitUntilExit];
     

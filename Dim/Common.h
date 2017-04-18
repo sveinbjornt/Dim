@@ -25,6 +25,9 @@
 
 #define ICONUTIL_PATH                       @"/usr/bin/iconutil"
 
+#define DEFAULT_OVERLAY_SIZE                0.5
+#define DEFAULT_YOFFSET_WIIHOUT_LABEL       10.0f
+
 #define DEFAULT_DOCUMENT_ICON_PATH  \
 @"/System/Library/CoreServices/CoreTypes.bundle/Contents/Resources/GenericDocumentIcon.icns"
 

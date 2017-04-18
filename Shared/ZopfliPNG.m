@@ -36,4 +36,45 @@
     return @"/usr/local/bin/zopflipng";
 }
 
++ (BOOL)optimizePNGsInDirectory:(NSString *)directoryPath {
+    NSFileManager *fm = [NSFileManager defaultManager];
+    BOOL isDir = NO;
+    if (![fm fileExistsAtPath:directoryPath isDirectory:&isDir] || !isDir) {
+        return NO;
+    }
+    
+    NSArray *dirFiles = [fm contentsOfDirectoryAtPath:directoryPath error:nil];
+    NSPredicate *pred = [NSPredicate predicateWithFormat:@"self ENDSWITH '.png'"];
+    NSArray *pngFiles = [dirFiles filteredArrayUsingPredicate:pred];
+    
+    unsigned long long originalTotalFileSize = 0;
+    unsigned long long optimizedTotalFileSize = 0;
+    
+    for (NSString *fn in pngFiles) {
+        NSString *fullPath = [NSString stringWithFormat:@"%@/%@", directoryPath, fn];
+        
+        unsigned long long size = [[fm attributesOfItemAtPath:fullPath error:nil] fileSize];
+        originalTotalFileSize += size;
+        
+        [ZopfliPNG optimizePNGFileAtPath:fullPath];
+        
+        unsigned long long optSize = [[fm attributesOfItemAtPath:fullPath error:nil] fileSize];
+        optimizedTotalFileSize += optSize;
+        
+        if (size) {
+            float perc = 100.f - ((float)optSize / (float)size) * 100;
+            NSLog(@"Optimizing %@: %llu --> %llu (-%.1f%%)", fn, size, optSize, perc);
+        }
+    }
+    
+    if (originalTotalFileSize) {
+        float perc = 100.f - ((float)optimizedTotalFileSize / (float)originalTotalFileSize) * 100;
+        NSLog(@"Result for %lu files: %llu --> %llu (-%.1f%%)",
+                (unsigned long)[pngFiles count], originalTotalFileSize, optimizedTotalFileSize, perc);
+    }
+
+    return YES;
+}
+
+
 @end
