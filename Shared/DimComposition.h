@@ -18,4 +18,6 @@
 - (BOOL)createIconSetAtPath:(NSString *)path;
 - (BOOL)createIcnsAtPath:(NSString *)path;
 
++ (BOOL)convertIconSet:(NSString *)iconsetPath toIcns:(NSString *)outputIcnsPath;
+
 @end

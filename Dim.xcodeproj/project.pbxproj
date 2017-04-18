@@ -7,17 +7,18 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		F442E03F1EA6494100BAD80C /* DimComposition.m in Sources */ = {isa = PBXBuildFile; fileRef = F442E03E1EA6494100BAD80C /* DimComposition.m */; };
-		F442E0471EA64A3000BAD80C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F442E0461EA64A3000BAD80C /* main.m */; };
-		F442E04B1EA6571200BAD80C /* DimComposition.m in Sources */ = {isa = PBXBuildFile; fileRef = F442E03E1EA6494100BAD80C /* DimComposition.m */; };
 		F442E04C1EA6573A00BAD80C /* IconFamily.m in Sources */ = {isa = PBXBuildFile; fileRef = F4F14D091C6658CB002A2402 /* IconFamily.m */; };
 		F442E04D1EA6573C00BAD80C /* NSString+CarbonFSRefCreation.m in Sources */ = {isa = PBXBuildFile; fileRef = F4F14D0B1C6658CB002A2402 /* NSString+CarbonFSRefCreation.m */; };
-		F442E04E1EA6616700BAD80C /* NSImage+Reps.m in Sources */ = {isa = PBXBuildFile; fileRef = F4F6AE701C81F1E400D2B446 /* NSImage+Reps.m */; };
 		F442E04F1EA66F6F00BAD80C /* ZopfliPNG.m in Sources */ = {isa = PBXBuildFile; fileRef = F4F6AE651C7FF09200D2B446 /* ZopfliPNG.m */; };
+		F442E0511EA6822E00BAD80C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F442E0501EA6822E00BAD80C /* main.m */; };
+		F442E0541EA6845400BAD80C /* DimComposition.m in Sources */ = {isa = PBXBuildFile; fileRef = F442E0531EA6845400BAD80C /* DimComposition.m */; };
+		F442E0551EA6845400BAD80C /* DimComposition.m in Sources */ = {isa = PBXBuildFile; fileRef = F442E0531EA6845400BAD80C /* DimComposition.m */; };
+		F442E0581EA6845D00BAD80C /* NonInterpolatedImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = F442E0571EA6845D00BAD80C /* NonInterpolatedImageView.m */; };
+		F442E05B1EA6846600BAD80C /* NSImage+Reps.m in Sources */ = {isa = PBXBuildFile; fileRef = F442E05A1EA6846600BAD80C /* NSImage+Reps.m */; };
+		F442E05C1EA6846600BAD80C /* NSImage+Reps.m in Sources */ = {isa = PBXBuildFile; fileRef = F442E05A1EA6846600BAD80C /* NSImage+Reps.m */; };
+		F442E0601EA6848D00BAD80C /* dim.m in Sources */ = {isa = PBXBuildFile; fileRef = F442E05F1EA6848D00BAD80C /* dim.m */; };
 		F4C6CCFF1C80A53600B6924E /* RegistrationDefaults.plist in Resources */ = {isa = PBXBuildFile; fileRef = F4C6CCFE1C80A53600B6924E /* RegistrationDefaults.plist */; };
-		F4C6CD021C80AB5B00B6924E /* NonInterpolatedImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = F4C6CD011C80AB5B00B6924E /* NonInterpolatedImageView.m */; };
 		F4F14CF11C66547D002A2402 /* DimAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F4F14CF01C66547D002A2402 /* DimAppDelegate.m */; };
-		F4F14CF41C66547D002A2402 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F4F14CF31C66547D002A2402 /* main.m */; };
 		F4F14CF61C66547D002A2402 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F4F14CF51C66547D002A2402 /* Assets.xcassets */; };
 		F4F14CF91C66547D002A2402 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = F4F14CF71C66547D002A2402 /* MainMenu.xib */; };
 		F4F14D021C6655A2002A2402 /* DimWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = F4F14D011C6655A2002A2402 /* DimWindowController.m */; };
@@ -31,7 +32,6 @@
 		F4F6AE661C7FF09200D2B446 /* ZopfliPNG.m in Sources */ = {isa = PBXBuildFile; fileRef = F4F6AE651C7FF09200D2B446 /* ZopfliPNG.m */; };
 		F4F6AE691C7FFC5000D2B446 /* Credits.html in Resources */ = {isa = PBXBuildFile; fileRef = F4F6AE681C7FFC5000D2B446 /* Credits.html */; };
 		F4F6AE6D1C80F99C00D2B446 /* DimRepImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = F4F6AE6C1C80F99C00D2B446 /* DimRepImageView.m */; };
-		F4F6AE711C81F1E400D2B446 /* NSImage+Reps.m in Sources */ = {isa = PBXBuildFile; fileRef = F4F6AE701C81F1E400D2B446 /* NSImage+Reps.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -47,19 +47,21 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		F442E03D1EA6494100BAD80C /* DimComposition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DimComposition.h; path = Dim/DimComposition.h; sourceTree = "<group>"; };
-		F442E03E1EA6494100BAD80C /* DimComposition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DimComposition.m; path = Dim/DimComposition.m; sourceTree = "<group>"; };
 		F442E0441EA64A3000BAD80C /* dim */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = dim; sourceTree = BUILT_PRODUCTS_DIR; };
-		F442E0461EA64A3000BAD80C /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		F442E0501EA6822E00BAD80C /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		F442E0521EA6845400BAD80C /* DimComposition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DimComposition.h; sourceTree = "<group>"; };
+		F442E0531EA6845400BAD80C /* DimComposition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DimComposition.m; sourceTree = "<group>"; };
+		F442E0561EA6845D00BAD80C /* NonInterpolatedImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NonInterpolatedImageView.h; sourceTree = "<group>"; };
+		F442E0571EA6845D00BAD80C /* NonInterpolatedImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NonInterpolatedImageView.m; sourceTree = "<group>"; };
+		F442E0591EA6846600BAD80C /* NSImage+Reps.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSImage+Reps.h"; sourceTree = "<group>"; };
+		F442E05A1EA6846600BAD80C /* NSImage+Reps.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSImage+Reps.m"; sourceTree = "<group>"; };
+		F442E05F1EA6848D00BAD80C /* dim.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = dim.m; path = "dim-clt/dim.m"; sourceTree = SOURCE_ROOT; };
 		F4C6CCFB1C8077EB00B6924E /* CHANGES.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = CHANGES.txt; sourceTree = "<group>"; };
 		F4C6CCFC1C8077EB00B6924E /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		F4C6CCFE1C80A53600B6924E /* RegistrationDefaults.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = RegistrationDefaults.plist; sourceTree = "<group>"; };
-		F4C6CD001C80AB5B00B6924E /* NonInterpolatedImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NonInterpolatedImageView.h; sourceTree = "<group>"; };
-		F4C6CD011C80AB5B00B6924E /* NonInterpolatedImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NonInterpolatedImageView.m; sourceTree = "<group>"; };
 		F4F14CEC1C66547D002A2402 /* Dim.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Dim.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F4F14CEF1C66547D002A2402 /* DimAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DimAppDelegate.h; sourceTree = "<group>"; };
 		F4F14CF01C66547D002A2402 /* DimAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DimAppDelegate.m; sourceTree = "<group>"; };
-		F4F14CF31C66547D002A2402 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		F4F14CF51C66547D002A2402 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F4F14CF81C66547D002A2402 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		F4F14CFA1C66547D002A2402 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -83,8 +85,6 @@
 		F4F6AE681C7FFC5000D2B446 /* Credits.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = Credits.html; sourceTree = "<group>"; };
 		F4F6AE6B1C80F99C00D2B446 /* DimRepImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DimRepImageView.h; sourceTree = "<group>"; };
 		F4F6AE6C1C80F99C00D2B446 /* DimRepImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DimRepImageView.m; sourceTree = "<group>"; };
-		F4F6AE6F1C81F1E400D2B446 /* NSImage+Reps.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSImage+Reps.h"; path = "Dim/NSImage+Reps.h"; sourceTree = "<group>"; };
-		F4F6AE701C81F1E400D2B446 /* NSImage+Reps.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSImage+Reps.m"; path = "Dim/NSImage+Reps.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -108,10 +108,28 @@
 		F442E0451EA64A3000BAD80C /* dim CLT */ = {
 			isa = PBXGroup;
 			children = (
-				F442E0461EA64A3000BAD80C /* main.m */,
+				F442E05F1EA6848D00BAD80C /* dim.m */,
 			);
 			name = "dim CLT";
 			path = dim;
+			sourceTree = "<group>";
+		};
+		F442E0611EA6873A00BAD80C /* NonInterpolatedImageView */ = {
+			isa = PBXGroup;
+			children = (
+				F442E0561EA6845D00BAD80C /* NonInterpolatedImageView.h */,
+				F442E0571EA6845D00BAD80C /* NonInterpolatedImageView.m */,
+			);
+			name = NonInterpolatedImageView;
+			sourceTree = "<group>";
+		};
+		F442E0621EA6874900BAD80C /* NSimage+Reps */ = {
+			isa = PBXGroup;
+			children = (
+				F442E0591EA6846600BAD80C /* NSImage+Reps.h */,
+				F442E05A1EA6846600BAD80C /* NSImage+Reps.m */,
+			);
+			name = "NSimage+Reps";
 			sourceTree = "<group>";
 		};
 		F4F14CE31C66547D002A2402 = {
@@ -120,10 +138,6 @@
 				F4C6CCFC1C8077EB00B6924E /* README.md */,
 				F4C6CCFB1C8077EB00B6924E /* CHANGES.txt */,
 				F4F14D171C67BFD0002A2402 /* Common.h */,
-				F442E03D1EA6494100BAD80C /* DimComposition.h */,
-				F442E03E1EA6494100BAD80C /* DimComposition.m */,
-				F4F6AE6F1C81F1E400D2B446 /* NSImage+Reps.h */,
-				F4F6AE701C81F1E400D2B446 /* NSImage+Reps.m */,
 				F442E0451EA64A3000BAD80C /* dim CLT */,
 				F4F14CEE1C66547D002A2402 /* Dim App */,
 				F4F14D061C6658CB002A2402 /* Shared */,
@@ -143,8 +157,8 @@
 		F4F14CEE1C66547D002A2402 /* Dim App */ = {
 			isa = PBXGroup;
 			children = (
-				F4F14CF31C66547D002A2402 /* main.m */,
 				F4F14CEF1C66547D002A2402 /* DimAppDelegate.h */,
+				F442E0501EA6822E00BAD80C /* main.m */,
 				F4F14CF01C66547D002A2402 /* DimAppDelegate.m */,
 				F4F14D001C6655A1002A2402 /* DimWindowController.h */,
 				F4F14D011C6655A2002A2402 /* DimWindowController.m */,
@@ -154,7 +168,8 @@
 				F4F6AE5E1C7FD78900D2B446 /* DimRepView.m */,
 				F4F6AE6B1C80F99C00D2B446 /* DimRepImageView.h */,
 				F4F6AE6C1C80F99C00D2B446 /* DimRepImageView.m */,
-				F4F6AE6E1C81F06B00D2B446 /* Utils */,
+				F4F14D0E1C665FE7002A2402 /* DimIconView.h */,
+				F4F14D0F1C665FE7002A2402 /* DimIconView.m */,
 				F4F6AE6A1C7FFCD300D2B446 /* Resources */,
 			);
 			name = "Dim App";
@@ -164,6 +179,10 @@
 		F4F14D061C6658CB002A2402 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				F442E0521EA6845400BAD80C /* DimComposition.h */,
+				F442E0531EA6845400BAD80C /* DimComposition.m */,
+				F442E0611EA6873A00BAD80C /* NonInterpolatedImageView */,
+				F442E0621EA6874900BAD80C /* NSimage+Reps */,
 				F4F6AE671C7FF09700D2B446 /* ZopfliPNG */,
 				F4F14D071C6658CB002A2402 /* IconFamily */,
 			);
@@ -203,17 +222,6 @@
 				F4F14CFA1C66547D002A2402 /* Info.plist */,
 			);
 			name = Resources;
-			sourceTree = "<group>";
-		};
-		F4F6AE6E1C81F06B00D2B446 /* Utils */ = {
-			isa = PBXGroup;
-			children = (
-				F4C6CD001C80AB5B00B6924E /* NonInterpolatedImageView.h */,
-				F4C6CD011C80AB5B00B6924E /* NonInterpolatedImageView.m */,
-				F4F14D0E1C665FE7002A2402 /* DimIconView.h */,
-				F4F14D0F1C665FE7002A2402 /* DimIconView.m */,
-			);
-			name = Utils;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -329,11 +337,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F442E04E1EA6616700BAD80C /* NSImage+Reps.m in Sources */,
+				F442E0601EA6848D00BAD80C /* dim.m in Sources */,
 				F442E04F1EA66F6F00BAD80C /* ZopfliPNG.m in Sources */,
 				F442E04D1EA6573C00BAD80C /* NSString+CarbonFSRefCreation.m in Sources */,
-				F442E0471EA64A3000BAD80C /* main.m in Sources */,
-				F442E04B1EA6571200BAD80C /* DimComposition.m in Sources */,
+				F442E0551EA6845400BAD80C /* DimComposition.m in Sources */,
+				F442E05C1EA6846600BAD80C /* NSImage+Reps.m in Sources */,
 				F442E04C1EA6573A00BAD80C /* IconFamily.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -342,17 +350,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F4C6CD021C80AB5B00B6924E /* NonInterpolatedImageView.m in Sources */,
+				F442E0511EA6822E00BAD80C /* main.m in Sources */,
+				F442E0581EA6845D00BAD80C /* NonInterpolatedImageView.m in Sources */,
 				F4F14D101C665FE7002A2402 /* DimIconView.m in Sources */,
-				F4F14CF41C66547D002A2402 /* main.m in Sources */,
 				F4F14D021C6655A2002A2402 /* DimWindowController.m in Sources */,
 				F4F6AE5C1C7FCAA400D2B446 /* DimRepresentationsViewController.m in Sources */,
+				F442E0541EA6845400BAD80C /* DimComposition.m in Sources */,
 				F4F6AE6D1C80F99C00D2B446 /* DimRepImageView.m in Sources */,
 				F4F6AE661C7FF09200D2B446 /* ZopfliPNG.m in Sources */,
 				F4F14D0C1C6658CB002A2402 /* IconFamily.m in Sources */,
-				F4F6AE711C81F1E400D2B446 /* NSImage+Reps.m in Sources */,
+				F442E05B1EA6846600BAD80C /* NSImage+Reps.m in Sources */,
 				F4F6AE5F1C7FD78900D2B446 /* DimRepView.m in Sources */,
-				F442E03F1EA6494100BAD80C /* DimComposition.m in Sources */,
 				F4F14D0D1C6658CB002A2402 /* NSString+CarbonFSRefCreation.m in Sources */,
 				F4F14CF11C66547D002A2402 /* DimAppDelegate.m in Sources */,
 			);

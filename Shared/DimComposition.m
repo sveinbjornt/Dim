@@ -9,6 +9,7 @@
 #import "DimComposition.h"
 #import <AppKit/AppKit.h>
 #import "NSImage+Reps.h"
+#import "Common.h"
 
 static BOOL CGImageWriteToFile(CGImageRef image, NSString *path, NSString *imageUTType) {
     
@@ -56,6 +57,8 @@ static BOOL CGImageWriteToFile(CGImageRef image, NSString *path, NSString *image
 - (BOOL)createIconSetAtPath:(NSString *)destinationPath {
 //    NSMutableDictionary *images = [NSMutableDictionary dictionary];
     
+    NSString *baseName = @"icon";//[[destinationPath lastPathComponent] stringByDeletingPathExtension];
+    
     // Create destination iconset folder if it doesn't exist
     NSFileManager *fm = [NSFileManager defaultManager];
     if ([fm fileExistsAtPath:destinationPath] == NO) {
@@ -71,9 +74,6 @@ static BOOL CGImageWriteToFile(CGImageRef image, NSString *path, NSString *image
         }
     }
     
-    
-    
-    
     NSLog(@"Creating at %@", destinationPath);
 
     // Create each rep in turn
@@ -86,16 +86,16 @@ static BOOL CGImageWriteToFile(CGImageRef image, NSString *path, NSString *image
         NSSize size = [r size];
         CGFloat scale = [r pixelsWide] / size.width;
         
-        NSString *identifier = [NSString stringWithFormat:@"%dx%d@%dx",
-                                (int)size.width, (int)size.height, (int)scale];
+        NSString *scaleStr = (scale == 1.0f) ? @"" : [NSString stringWithFormat:@"@%dx", (int)scale];
+        NSString *identifier = [NSString stringWithFormat:@"%dx%d%@",
+                                (int)size.width, (int)size.height, scaleStr];
         
-        NSString *outPath = [NSString stringWithFormat:@"%@/%@.png", destinationPath, identifier];
+        NSString *outPath = [NSString stringWithFormat:@"%@/%@_%@.png", destinationPath, baseName, identifier];
         NSLog(@"Generating %@", outPath);
         
         CGImageRef img = [self newImageForSize:size scale:scale];
         CGImageWriteToFile(img, outPath, (NSString *)kUTTypePNG);
     }
-    
     
     return YES;
 }
@@ -137,6 +137,25 @@ static BOOL CGImageWriteToFile(CGImageRef image, NSString *path, NSString *image
 }
 
 - (BOOL)createIcnsAtPath:(NSString *)path {
+    return YES;
+}
+
++ (BOOL)convertIconSet:(NSString *)iconsetPath toIcns:(NSString *)outputIcnsPath {
+    NSString *iconutilPath = ICONUTIL_PATH;
+    if (![[NSFileManager defaultManager] fileExistsAtPath:iconutilPath]) {
+        NSLog(@"%@ not installed on this system", iconutilPath);
+        return NO;
+    }
+    
+    NSTask *task = [[NSTask alloc] init];
+    task.launchPath = iconutilPath;
+    task.arguments = @[@"--convert", @"icns", @"--output", outputIcnsPath, iconsetPath];
+    NSLog([task.arguments description]);
+//    task.standardOutput = [NSFileHandle fileHandleWithNullDevice];
+//    task.standardError = [NSFileHandle fileHandleWithNullDevice];
+    [task launch];
+    [task waitUntilExit];
+    
     return YES;
 }
 

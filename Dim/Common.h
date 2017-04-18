@@ -23,6 +23,8 @@
 #define DEFAULT_LABEL_FONT                  @"Helvetica"
 #define DEFAULT_LABEL_COLOR                 [NSColor grayColor]
 
+#define ICONUTIL_PATH                       @"/usr/bin/iconutil"
+
 #define DEFAULT_DOCUMENT_ICON_PATH  \
 @"/System/Library/CoreServices/CoreTypes.bundle/Contents/Resources/GenericDocumentIcon.icns"
 
