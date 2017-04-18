@@ -15,8 +15,6 @@
 #import "NSImage+Reps.h"
 
 @interface DimRepresentationsViewController ()
-{
-}
 
 @property (weak) IBOutlet DimWindowController *windowController;
 @property (weak) IBOutlet NSSegmentedControl *segmentedControl;

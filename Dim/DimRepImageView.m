@@ -68,7 +68,7 @@
     
     NSRect docRect = NSMakeRect(0, 0, size, size);
     docRect = [self convertRectFromBacking:docRect];
-    NSLog(NSStringFromRect(docRect));
+    NSLog(@"%@", NSStringFromRect(docRect));
     
     // Draw document icon
     if ([DEFAULTS boolForKey:@"DocumentIconEnabled"] && self.docImgRep) {

@@ -7,6 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F442E03F1EA6494100BAD80C /* DimComposition.m in Sources */ = {isa = PBXBuildFile; fileRef = F442E03E1EA6494100BAD80C /* DimComposition.m */; };
+		F442E0471EA64A3000BAD80C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F442E0461EA64A3000BAD80C /* main.m */; };
+		F442E04B1EA6571200BAD80C /* DimComposition.m in Sources */ = {isa = PBXBuildFile; fileRef = F442E03E1EA6494100BAD80C /* DimComposition.m */; };
+		F442E04C1EA6573A00BAD80C /* IconFamily.m in Sources */ = {isa = PBXBuildFile; fileRef = F4F14D091C6658CB002A2402 /* IconFamily.m */; };
+		F442E04D1EA6573C00BAD80C /* NSString+CarbonFSRefCreation.m in Sources */ = {isa = PBXBuildFile; fileRef = F4F14D0B1C6658CB002A2402 /* NSString+CarbonFSRefCreation.m */; };
+		F442E04E1EA6616700BAD80C /* NSImage+Reps.m in Sources */ = {isa = PBXBuildFile; fileRef = F4F6AE701C81F1E400D2B446 /* NSImage+Reps.m */; };
+		F442E04F1EA66F6F00BAD80C /* ZopfliPNG.m in Sources */ = {isa = PBXBuildFile; fileRef = F4F6AE651C7FF09200D2B446 /* ZopfliPNG.m */; };
 		F4C6CCFF1C80A53600B6924E /* RegistrationDefaults.plist in Resources */ = {isa = PBXBuildFile; fileRef = F4C6CCFE1C80A53600B6924E /* RegistrationDefaults.plist */; };
 		F4C6CD021C80AB5B00B6924E /* NonInterpolatedImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = F4C6CD011C80AB5B00B6924E /* NonInterpolatedImageView.m */; };
 		F4F14CF11C66547D002A2402 /* DimAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F4F14CF01C66547D002A2402 /* DimAppDelegate.m */; };
@@ -27,7 +34,23 @@
 		F4F6AE711C81F1E400D2B446 /* NSImage+Reps.m in Sources */ = {isa = PBXBuildFile; fileRef = F4F6AE701C81F1E400D2B446 /* NSImage+Reps.m */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		F442E0421EA64A3000BAD80C /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		F442E03D1EA6494100BAD80C /* DimComposition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DimComposition.h; path = Dim/DimComposition.h; sourceTree = "<group>"; };
+		F442E03E1EA6494100BAD80C /* DimComposition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DimComposition.m; path = Dim/DimComposition.m; sourceTree = "<group>"; };
+		F442E0441EA64A3000BAD80C /* dim */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = dim; sourceTree = BUILT_PRODUCTS_DIR; };
+		F442E0461EA64A3000BAD80C /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		F4C6CCFB1C8077EB00B6924E /* CHANGES.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = CHANGES.txt; sourceTree = "<group>"; };
 		F4C6CCFC1C8077EB00B6924E /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		F4C6CCFE1C80A53600B6924E /* RegistrationDefaults.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = RegistrationDefaults.plist; sourceTree = "<group>"; };
@@ -49,7 +72,7 @@
 		F4F14D0B1C6658CB002A2402 /* NSString+CarbonFSRefCreation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+CarbonFSRefCreation.m"; sourceTree = "<group>"; };
 		F4F14D0E1C665FE7002A2402 /* DimIconView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DimIconView.h; sourceTree = "<group>"; };
 		F4F14D0F1C665FE7002A2402 /* DimIconView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DimIconView.m; sourceTree = "<group>"; };
-		F4F14D171C67BFD0002A2402 /* Common.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Common.h; sourceTree = "<group>"; };
+		F4F14D171C67BFD0002A2402 /* Common.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Common.h; path = Dim/Common.h; sourceTree = "<group>"; };
 		F4F6AE5A1C7FCAA400D2B446 /* DimRepresentationsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DimRepresentationsViewController.h; sourceTree = "<group>"; };
 		F4F6AE5B1C7FCAA400D2B446 /* DimRepresentationsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DimRepresentationsViewController.m; sourceTree = "<group>"; };
 		F4F6AE5D1C7FD78900D2B446 /* DimRepView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DimRepView.h; sourceTree = "<group>"; };
@@ -60,11 +83,18 @@
 		F4F6AE681C7FFC5000D2B446 /* Credits.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = Credits.html; sourceTree = "<group>"; };
 		F4F6AE6B1C80F99C00D2B446 /* DimRepImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DimRepImageView.h; sourceTree = "<group>"; };
 		F4F6AE6C1C80F99C00D2B446 /* DimRepImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DimRepImageView.m; sourceTree = "<group>"; };
-		F4F6AE6F1C81F1E400D2B446 /* NSImage+Reps.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSImage+Reps.h"; sourceTree = "<group>"; };
-		F4F6AE701C81F1E400D2B446 /* NSImage+Reps.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSImage+Reps.m"; sourceTree = "<group>"; };
+		F4F6AE6F1C81F1E400D2B446 /* NSImage+Reps.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSImage+Reps.h"; path = "Dim/NSImage+Reps.h"; sourceTree = "<group>"; };
+		F4F6AE701C81F1E400D2B446 /* NSImage+Reps.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSImage+Reps.m"; path = "Dim/NSImage+Reps.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		F442E0411EA64A3000BAD80C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		F4F14CE91C66547D002A2402 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -75,11 +105,26 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		F442E0451EA64A3000BAD80C /* dim CLT */ = {
+			isa = PBXGroup;
+			children = (
+				F442E0461EA64A3000BAD80C /* main.m */,
+			);
+			name = "dim CLT";
+			path = dim;
+			sourceTree = "<group>";
+		};
 		F4F14CE31C66547D002A2402 = {
 			isa = PBXGroup;
 			children = (
 				F4C6CCFC1C8077EB00B6924E /* README.md */,
 				F4C6CCFB1C8077EB00B6924E /* CHANGES.txt */,
+				F4F14D171C67BFD0002A2402 /* Common.h */,
+				F442E03D1EA6494100BAD80C /* DimComposition.h */,
+				F442E03E1EA6494100BAD80C /* DimComposition.m */,
+				F4F6AE6F1C81F1E400D2B446 /* NSImage+Reps.h */,
+				F4F6AE701C81F1E400D2B446 /* NSImage+Reps.m */,
+				F442E0451EA64A3000BAD80C /* dim CLT */,
 				F4F14CEE1C66547D002A2402 /* Dim App */,
 				F4F14D061C6658CB002A2402 /* Shared */,
 				F4F14CED1C66547D002A2402 /* Products */,
@@ -90,6 +135,7 @@
 			isa = PBXGroup;
 			children = (
 				F4F14CEC1C66547D002A2402 /* Dim.app */,
+				F442E0441EA64A3000BAD80C /* dim */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -98,7 +144,6 @@
 			isa = PBXGroup;
 			children = (
 				F4F14CF31C66547D002A2402 /* main.m */,
-				F4F14D171C67BFD0002A2402 /* Common.h */,
 				F4F14CEF1C66547D002A2402 /* DimAppDelegate.h */,
 				F4F14CF01C66547D002A2402 /* DimAppDelegate.m */,
 				F4F14D001C6655A1002A2402 /* DimWindowController.h */,
@@ -109,7 +154,7 @@
 				F4F6AE5E1C7FD78900D2B446 /* DimRepView.m */,
 				F4F6AE6B1C80F99C00D2B446 /* DimRepImageView.h */,
 				F4F6AE6C1C80F99C00D2B446 /* DimRepImageView.m */,
-				F4F6AE6E1C81F06B00D2B446 /* New Group */,
+				F4F6AE6E1C81F06B00D2B446 /* Utils */,
 				F4F6AE6A1C7FFCD300D2B446 /* Resources */,
 			);
 			name = "Dim App";
@@ -160,22 +205,37 @@
 			name = Resources;
 			sourceTree = "<group>";
 		};
-		F4F6AE6E1C81F06B00D2B446 /* New Group */ = {
+		F4F6AE6E1C81F06B00D2B446 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
 				F4C6CD001C80AB5B00B6924E /* NonInterpolatedImageView.h */,
 				F4C6CD011C80AB5B00B6924E /* NonInterpolatedImageView.m */,
 				F4F14D0E1C665FE7002A2402 /* DimIconView.h */,
 				F4F14D0F1C665FE7002A2402 /* DimIconView.m */,
-				F4F6AE6F1C81F1E400D2B446 /* NSImage+Reps.h */,
-				F4F6AE701C81F1E400D2B446 /* NSImage+Reps.m */,
 			);
-			name = "New Group";
+			name = Utils;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		F442E0431EA64A3000BAD80C /* dim */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F442E0481EA64A3000BAD80C /* Build configuration list for PBXNativeTarget "dim" */;
+			buildPhases = (
+				F442E0401EA64A3000BAD80C /* Sources */,
+				F442E0411EA64A3000BAD80C /* Frameworks */,
+				F442E0421EA64A3000BAD80C /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = dim;
+			productName = dim;
+			productReference = F442E0441EA64A3000BAD80C /* dim */;
+			productType = "com.apple.product-type.tool";
+		};
 		F4F14CEB1C66547D002A2402 /* Dim */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = F4F14CFD1C66547D002A2402 /* Build configuration list for PBXNativeTarget "Dim" */;
@@ -200,9 +260,13 @@
 		F4F14CE41C66547D002A2402 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0720;
+				LastUpgradeCheck = 0830;
 				ORGANIZATIONNAME = "Sveinbjorn Thordarson";
 				TargetAttributes = {
+					F442E0431EA64A3000BAD80C = {
+						CreatedOnToolsVersion = 8.3.1;
+						ProvisioningStyle = Automatic;
+					};
 					F4F14CEB1C66547D002A2402 = {
 						CreatedOnToolsVersion = 7.2;
 					};
@@ -222,6 +286,7 @@
 			projectRoot = "";
 			targets = (
 				F4F14CEB1C66547D002A2402 /* Dim */,
+				F442E0431EA64A3000BAD80C /* dim */,
 			);
 		};
 /* End PBXProject section */
@@ -260,6 +325,19 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		F442E0401EA64A3000BAD80C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F442E04E1EA6616700BAD80C /* NSImage+Reps.m in Sources */,
+				F442E04F1EA66F6F00BAD80C /* ZopfliPNG.m in Sources */,
+				F442E04D1EA6573C00BAD80C /* NSString+CarbonFSRefCreation.m in Sources */,
+				F442E0471EA64A3000BAD80C /* main.m in Sources */,
+				F442E04B1EA6571200BAD80C /* DimComposition.m in Sources */,
+				F442E04C1EA6573A00BAD80C /* IconFamily.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		F4F14CE81C66547D002A2402 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -274,6 +352,7 @@
 				F4F14D0C1C6658CB002A2402 /* IconFamily.m in Sources */,
 				F4F6AE711C81F1E400D2B446 /* NSImage+Reps.m in Sources */,
 				F4F6AE5F1C7FD78900D2B446 /* DimRepView.m in Sources */,
+				F442E03F1EA6494100BAD80C /* DimComposition.m in Sources */,
 				F4F14D0D1C6658CB002A2402 /* NSString+CarbonFSRefCreation.m in Sources */,
 				F4F14CF11C66547D002A2402 /* DimAppDelegate.m in Sources */,
 			);
@@ -293,6 +372,28 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		F442E0491EA64A3000BAD80C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		F442E04A1EA64A3000BAD80C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 		F4F14CFB1C66547D002A2402 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -306,8 +407,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "-";
@@ -349,8 +452,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "-";
@@ -399,6 +504,14 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		F442E0481EA64A3000BAD80C /* Build configuration list for PBXNativeTarget "dim" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F442E0491EA64A3000BAD80C /* Debug */,
+				F442E04A1EA64A3000BAD80C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
 		F4F14CE71C66547D002A2402 /* Build configuration list for PBXProject "Dim" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

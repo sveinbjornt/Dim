@@ -10,7 +10,7 @@
 
 @interface DimRepView : NSView
 
-@property CGFloat scale;
+@property (nonatomic) CGFloat scale;
 @property NSSize actualSize;
 
 - (void)aspectFit;

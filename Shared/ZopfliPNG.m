@@ -10,16 +10,30 @@
 
 @implementation ZopfliPNG
 
-- (BOOL)optimizePNGFileAtPath:(NSString *)path {
-    NSString *zopfliPath = [[NSBundle mainBundle] pathForResource:@"zopflipng" ofType:nil];
++ (BOOL)optimizePNGFileAtPath:(NSString *)path {
+    NSString *zopfliPath = [ZopfliPNG findCommandLineProgramNamed:@"zopflipng"];
+    if (!zopfliPath) {
+        return NO;
+    }
     
     NSTask *task = [[NSTask alloc] init];
     task.launchPath = zopfliPath;
-    task.arguments = @[path, path];
+    task.arguments = @[@"-y", path, path];
+    task.standardOutput = [NSFileHandle fileHandleWithNullDevice];
+    task.standardError = [NSFileHandle fileHandleWithNullDevice];
     [task launch];
     [task waitUntilExit];
     
     return YES;
+}
+
++ (NSString *)findCommandLineProgramNamed:(NSString *)progName {
+    NSString *zopfliPath = [[NSBundle mainBundle] pathForResource:@"zopflipng" ofType:nil];
+    if (zopfliPath) {
+        return zopfliPath;
+    }
+    
+    return @"/usr/local/bin/zopflipng";
 }
 
 @end

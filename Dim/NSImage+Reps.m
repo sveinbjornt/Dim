@@ -11,8 +11,7 @@
 @implementation NSImage (Reps)
 
 - (NSBitmapImageRep *)representationForSize:(CGFloat)width scale:(CGFloat)scale {
-    NSArray *reps = [self representations];
-    for (NSBitmapImageRep *imgRep in reps) {
+    for (NSBitmapImageRep *imgRep in [self representations]) {
         
 //        NSLog(@"----------------");
 //        NSLog([imgRep description]);
@@ -23,13 +22,12 @@
         if (scale == 2.0 && imgRep.pixelsWide == width * 2) {
             return imgRep;
         }
-//        if (imgRep.size.width == width) {
-//            if (imgRep.pixelsWide == width * scale) {
-//                return imgRep;
-//            }
-//        }
     }
     return nil;
+}
+
+- (NSBitmapImageRep *)bestRepresentationForSize:(CGFloat)width scale:(CGFloat)scale {
+    return [self representationForSize:width scale:scale];
 }
 
 - (void)printRepresentations {
