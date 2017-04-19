@@ -56,6 +56,13 @@
 		F442E0591EA6846600BAD80C /* NSImage+Reps.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSImage+Reps.h"; sourceTree = "<group>"; };
 		F442E05A1EA6846600BAD80C /* NSImage+Reps.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSImage+Reps.m"; sourceTree = "<group>"; };
 		F442E05F1EA6848D00BAD80C /* dim.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = dim.m; path = "dim-clt/dim.m"; sourceTree = SOURCE_ROOT; };
+		F442E0661EA6D72100BAD80C /* build_cat2html.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = build_cat2html.sh; sourceTree = "<group>"; };
+		F442E0671EA6D72100BAD80C /* cat2html */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = cat2html; sourceTree = "<group>"; };
+		F442E0681EA6D72100BAD80C /* cat2html.l */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.lex; path = cat2html.l; sourceTree = "<group>"; };
+		F442E0691EA6D72100BAD80C /* make_man_html.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = make_man_html.sh; sourceTree = "<group>"; };
+		F442E06B1EA6D72100BAD80C /* dim.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = dim.1; sourceTree = "<group>"; };
+		F442E06C1EA6D72100BAD80C /* dim.man.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = dim.man.html; sourceTree = "<group>"; };
+		F442E06D1EA6D72100BAD80C /* update_website_docs.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = update_website_docs.sh; sourceTree = "<group>"; };
 		F4C6CCFB1C8077EB00B6924E /* CHANGES.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = CHANGES.txt; sourceTree = "<group>"; };
 		F4C6CCFC1C8077EB00B6924E /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		F4C6CCFE1C80A53600B6924E /* RegistrationDefaults.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = RegistrationDefaults.plist; sourceTree = "<group>"; };
@@ -109,6 +116,7 @@
 			isa = PBXGroup;
 			children = (
 				F442E05F1EA6848D00BAD80C /* dim.m */,
+				F442E0631EA6D72100BAD80C /* man */,
 			);
 			name = "dim CLT";
 			path = dim;
@@ -130,6 +138,29 @@
 				F442E05A1EA6846600BAD80C /* NSImage+Reps.m */,
 			);
 			name = "NSimage+Reps";
+			sourceTree = "<group>";
+		};
+		F442E0631EA6D72100BAD80C /* man */ = {
+			isa = PBXGroup;
+			children = (
+				F442E0651EA6D72100BAD80C /* cat2html */,
+				F442E0691EA6D72100BAD80C /* make_man_html.sh */,
+				F442E06B1EA6D72100BAD80C /* dim.1 */,
+				F442E06C1EA6D72100BAD80C /* dim.man.html */,
+				F442E06D1EA6D72100BAD80C /* update_website_docs.sh */,
+			);
+			name = man;
+			path = "dim-clt/man";
+			sourceTree = SOURCE_ROOT;
+		};
+		F442E0651EA6D72100BAD80C /* cat2html */ = {
+			isa = PBXGroup;
+			children = (
+				F442E0661EA6D72100BAD80C /* build_cat2html.sh */,
+				F442E0671EA6D72100BAD80C /* cat2html */,
+				F442E0681EA6D72100BAD80C /* cat2html.l */,
+			);
+			path = cat2html;
 			sourceTree = "<group>";
 		};
 		F4F14CE31C66547D002A2402 = {

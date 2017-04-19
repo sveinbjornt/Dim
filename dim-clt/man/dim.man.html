@@ -1,0 +1,240 @@
+<html><head></head><body><pre><font face="Courier">
+<b>PLATYPUS(1)               BSD General Commands Manual              PLATYPUS(1)</b>
+
+<b>NAME</b>
+
+     <b>platypus</b> -- create a Mac OS X application wrapper around a script.
+
+<b>SYNOPSIS</b>
+
+     <b>platypus</b> [OPTIONS] <u>scriptPath</u> <u>[destinationPath]</u>
+
+<b>DESCRIPTION</b>
+
+     <b>platypus</b> is the command line counterpart to the Platypus Mac OS X appli-
+     cation.  It creates a Mac OS X application bundle from a script.  See
+     http://sveinbjorn.org/platypus
+
+     <b>platypus</b> defaults to creating application bundles, but can also create
+     Platypus profiles that are loadable by both the command line program and
+     the Platypus application.
+
+     If the scriptPath parameter is '-', script text is read from STDIN.
+
+     The following option flags are supported (parsed in the order in which
+     they are passed):
+
+     <b>-O,</b> <b>--generate-profile</b>
+          Create a profile document instead of creating an application bundle.
+          When this option is enabled, the &quot;destinationPath&quot; paramater (i.e.
+          the final argument to the program) should have a .platypus suffix.
+          If the string '-' is provided as destination path, the profile prop-
+          erty list XML will be dumped to STDOUT.
+
+     <b>-P,</b> <b>--load-profile</b> <u>profilePath</u>
+          Loads all settings from a Platypus profile document. It is still
+          necessary to specify a destination path for the application. Subse-
+          quent arguments can override profile settings.
+
+     <b>-a,</b> <b>--name</b> <u>appName</u>
+          Specifies the name of the application.  This is can be different
+          from the name of the .app bundle itself, and is displayed in the
+          application's menus, &quot;About&quot; window and Info.plist property list.
+
+     <b>-o,</b> <b>--interface-type</b> <u>interfaceType</u>
+          Specifies the application's interface type, which should be one of
+          the following:
+
+          <u>'None'</u> The application does not display any user interface except
+          for Dock icon &amp; menu.
+
+          <u>'Progress</u> <u>Bar'</u> The application displays a progress bar while run-
+          ning.
+
+          <u>'Text</u> <u>Window'</u> The application displays a window with a text field
+          with all script output.
+
+          <u>'Web</u> <u>View'</u> The application displays a window with a web view which
+          renders script output as HTML.
+
+          <u>'Status</u> <u>Menu'</u> The application displays a status menu item in the
+          menubar which runs the script and displays its output when clicked.
+
+          <u>'Droplet'</u> The application displays a droplet window for dropping
+          files on for processing by the script.
+
+          The default interface type is &quot;Text Window&quot;.
+
+     <b>-i,</b> <b>--app-icon</b> <u>iconPath</u>
+          Specifies a file to use as the icon for the application bundle. The
+          file must be a Mac OS X .icns file. If not specified, the default
+          Platypus app icon will be used. If specified, but left empty (''),
+          no application icon will be set for the app.
+
+     <b>-Q,</b> <b>--document-icon</b> <u>iconPath</u>
+          Specifies a file to use as icon for the application's documents.
+          Must be a Mac OS X .icns file.
+
+     <b>-p,</b> <b>--interpreter</b> <u>interpreterPath</u>
+          Sets script interpreter (e.g. /usr/bin/perl or /bin/sh). If the
+          interpreter is not specified, the command line tool will try to
+          guess the correct interpreter. If this fails, the standard shell
+          interpreter /bin/sh is used.
+
+     <b>-V,</b> <b>--app-version</b> <u>version</u>
+          Sets the application bundle's version. This is displayed in the
+          Info.plist property list and About window.
+
+     <b>-u,</b> <b>--author</b> <u>authorName</u>
+          Sets the name of the application author (e.g. &quot;Apple Computer&quot; or
+          &quot;John Smith&quot;).  If not specified, this defaults to the current
+          user's full user name.
+
+     <b>-f,</b> <b>--bundled-file</b> <u>filePath</u>
+          Specifies a file to be bundled with the application. The file will
+          be copied over to the Resources folder of the application bundle,
+          which is the same folder in which the script runs. Any number of
+          files can be bundled in this way.
+
+     <b>-I,</b> <b>--bundle-identifier</b> <u>bundleIdentifier</u>
+          Sets the application's bundle identifier. An application identifier
+          is a reverse DNS name (e.g. com.apple.iTunes) that uniquely identi-
+          fies the application. If this option is left empty, it will default
+          to an identifier of the format &quot;org.username.appname&quot; (e.g.
+          org.sveinbjorn.Platypus).
+
+     <b>-A,</b> <b>--admin-privileges</b>
+          This flag makes the application request administrator privileges via
+          Apple's Security Framework (i.e. prompt for a password) and then
+          executes the script with those privileges. For details on the nature
+          of these privileges, see the Apple documentation for the Authoriza-
+          tionExecuteWithPrivileges() in Security.framework. This is not
+          strictly equivalent to running as root.
+
+     <b>-D,</b> <b>--droppable</b>
+          Makes the application droppable, i.e. capable of receiving dragged
+          and dropped files as arguments to the script. The application bun-
+          dle's property list is modified so that it can receive dropped files
+          in the Dock and Finder. These files are then passed on to the script
+          as arguments.
+
+     <b>-F,</b> <b>--text-droppable</b>
+          Makes the application text droppable, i.e. makes it accept dragged
+          text snippets, which are then passed to script via STDIN.
+
+     <b>-N,</b> <b>--service</b>
+          Makes the app register as a Dynamic Service accessible from the Ser-
+          vices application submenu.
+
+     <b>-B,</b> <b>--background</b>
+          This option causes the application to run in the background so its
+          icon will not appear in the Dock.  This is done by registering the
+          application with LaunchServices as a user interface element
+          (LSUIElement).
+
+     <b>-R,</b> <b>--quit-after-execution</b>
+          This option makes the application quit once the script has been exe-
+          cuted.
+
+     <b>-X,</b> <b>--suffixes</b> <u>suffixes</u>
+          Only relevant if the application accepts dropped files. This flag
+          specifies the file suffixes (e.g. .txt, .wav) that the application
+          can open. This should be a |-separated string (e.g. &quot;txt|wav|jpg&quot;).
+
+     <b>-T,</b> <b>--uniform-type-identifiers</b> <u>utis</u>
+          Only relevant if the application accepts dropped files. This flag
+          specifies the uniform type identifier types that the application can
+          open.  This should be a |-separated string (e.g. &quot;public.item|pub-
+          lic.folder&quot;).
+
+     <b>-U,</b> <b>--uri-schemes</b> <u>schemes</u>
+          Set application as handler for URI schemes. These can be either
+          standard URI schemes such as http or custom URI schemes of your
+          choice. See documentation for details. Multiple itms should be a
+          |-separated string (e.g. &quot;ftp|myscheme|someotherscheme&quot;).
+
+     <b>-Z,</b> <b>--file-prompt</b>
+          Show an Open File dialog when the application launches.
+
+     <b>-G,</b> <b>--interpreter-args</b> <u>arguments</u>
+          Arguments for the script interpreter.  These should be specified as
+          a |-separated string (e.g. '-w|-s|-l').
+
+     <b>-C,</b> <b>--script-args</b> <u>arguments</u>
+          Arguments for the script.  These should be specified as a |-sepa-
+          rated string (e.g. '-w|-s|-l').
+
+     <b>-b,</b> <b>--text-background-color</b> <u>hexColor</u>
+          Set background color of text (e.g. #ffffff).
+
+     <b>-g,</b> <b>--text-foreground-color</b> <u>hexColor</u>
+          Set foreground color of text (e.g. #000000).
+
+     <b>-n,</b> <b>--text-font</b> <u>fontName</u>
+          Set font and font size for text view (e.g. 'Monaco 10').
+
+     <b>-K,</b> <b>--status-item-kind</b> <u>kind</u>
+          For Status Menu interface type only.  Set display kind for Status
+          Menu interface type.  This can be &quot;Text&quot; or &quot;Icon&quot;.
+
+     <b>-Y,</b> <b>--status-item-title</b> <u>title</u>
+          For Status Menu interface type only.  Set the display title for the
+          status item in Status Menu interface type.
+
+     <b>-L,</b> <b>--status-item-icon</b> <u>imagePath</u>
+          For Status Menu interface type only.  Set the icon image for the
+          status item in Status Menu interface type. Must be an image file in
+          one of the formats supported by the Cocoa APIs (e.g. PNG, JPEG, TIFF
+          etc.)
+
+     <b>-c,</b> <b>--status-item-sysfont</b>
+          For Status Menu interface type only. Makes menu use system font
+          instead of user-defined styling.
+
+     <b>-x,</b> <b>--xml-property-lists</b> <b>-x</b>
+          Create XML format property lists instead of binary ones.
+
+     <b>-d,</b> <b>--symlink</b>
+          A symlink to the original script is created inside the application
+          bundle instead of copying the script over. Symlinks are also created
+          to any bundled files.
+
+     <b>-l,</b> <b>--optimize-nib</b>
+          Strip the bundled application nib file to reduce its size. Makes the
+          nib uneditable. Only works if Apple's XCode is installed.
+
+     <b>-y,</b> <b>--overwrite</b>
+          Overwrite any pre-existing files or folders in destination path.
+
+     <b>-v,</b> <b>--version</b>
+          Print the version of this program
+
+     <b>-h,</b> <b>--help</b>
+          Print help and usage string
+
+     Exits 0 on success, and &gt;0 if an error occurs.
+
+<b>FILES</b>
+
+     /usr/local/bin/platypus                         program binary
+     /usr/local/share/platypus/ScriptExec            executable binary
+     /usr/local/share/platypus/MainMenu.nib          nib file for app
+     /usr/local/share/platypus/PlatypusDefault.icns  default icon
+
+<b>EXAMPLES</b>
+
+     platypus -P myProfile.platypus ~/Desktop/MyApplication.app
+
+     platypus -o 'Text Window' script.pl PerlScript.app
+
+     platypus -a 'My App' -p /usr/bin/python myPythonScript.py
+
+     platypus -D -a MyDroplet -o 'Droplet' ~/droplet.sh
+
+<b>AUTHORS</b>
+
+     Sveinbjorn Thordarson &lt;sveinbjornt@gmail.com&gt;
+
+Darwin                         January 26, 2017                         Darwin
+</font></pre>
+</body></html>

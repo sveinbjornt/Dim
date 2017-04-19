@@ -191,7 +191,7 @@ int main(int argc, const char * argv[]) { @autoreleasepool {
     }
     
     // Optimization
-    if (optimizeImages) {
+    if (optimizeImages || 1) {
         NSPrint(@"Optimizing images in directory %@", destination);
         [ZopfliPNG optimizePNGsInDirectory:destination];
     }

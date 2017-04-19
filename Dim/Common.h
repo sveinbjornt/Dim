@@ -15,6 +15,7 @@
 #define	PROGRAM_GITHUB_WEBSITE              @"http://github.com/sveinbjornt/Dim"
 #define PROGRAM_DONATIONS					@"http://sveinbjorn.org/donations"
 #define PROGRAM_LICENSE_URL					@"http://sveinbjorn.org/bsd_license"
+#define PROGRAM_BUNDLE_IDENTIFIER           @"org.sveinbjorn.Dim"
 
 #define FILEMGR                             [NSFileManager defaultManager]
 #define DEFAULTS                            [NSUserDefaults standardUserDefaults]

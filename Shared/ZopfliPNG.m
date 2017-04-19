@@ -7,12 +7,15 @@
 //
 
 #import "ZopfliPNG.h"
+#import "Common.h"
+#import <Cocoa/Cocoa.h>
 
 @implementation ZopfliPNG
 
 + (BOOL)optimizePNGFileAtPath:(NSString *)path {
     NSString *zopfliPath = [ZopfliPNG findCommandLineProgramNamed:@"zopflipng"];
-    if (!zopfliPath) {
+    if (zopfliPath == nil) {
+        NSLog(@"No zopflipng program found");
         return NO;
     }
     
@@ -28,12 +31,54 @@
 }
 
 + (NSString *)findCommandLineProgramNamed:(NSString *)progName {
-    NSString *zopfliPath = [[NSBundle mainBundle] pathForResource:@"zopflipng" ofType:nil];
-    if (zopfliPath) {
-        return zopfliPath;
+    // Is the binary included in with the running app?
+    NSString *progPath = [[NSBundle mainBundle] pathForResource:progName ofType:nil];
+    if (progPath) {
+        return progPath;
     }
     
-    return @"/usr/local/bin/zopflipng";
+    // Try to find Dim app
+    NSString *appPath = [[NSWorkspace sharedWorkspace] absolutePathForAppBundleWithIdentifier:PROGRAM_BUNDLE_IDENTIFIER];
+    if (appPath) {
+        progPath = [[NSBundle bundleWithPath:appPath] pathForResource:progName ofType:nil];
+        if (progPath) {
+            return progPath;
+        }
+    }
+    
+    // Check /usr/local/bin
+    progPath = [NSString stringWithFormat:@"/usr/local/bin/%@", progName];
+    if ([[NSFileManager defaultManager] fileExistsAtPath:progPath]) {
+        return progPath;
+    }
+    
+    // Launch 'find' task in order to try to locate a zopflipng binary
+    NSTask *findTask = [[NSTask alloc] init];
+    [findTask setLaunchPath:@"/usr/bin/locate"];
+    [findTask setArguments:@[progName]];
+    
+    NSPipe *outputPipe = [NSPipe pipe];
+    [findTask setStandardOutput:outputPipe];
+    NSFileHandle *readHandle = [outputPipe fileHandleForReading];
+    
+    [findTask launch];
+    [findTask waitUntilExit];
+
+    NSData *outputData = [readHandle readDataToEndOfFile];
+    NSString *outputString = [[NSString alloc] initWithData:outputData encoding:NSUTF8StringEncoding];
+
+    NSArray *results = [outputString componentsSeparatedByString:@"\n"];
+    NSString *filterStr = [NSString stringWithFormat:@"self ENDSWITH '%@'", progName];
+    NSPredicate *pred = [NSPredicate predicateWithFormat:filterStr];
+    results = [results filteredArrayUsingPredicate:pred];
+
+    for (NSString *r in results) {
+        if ([[NSFileManager defaultManager] fileExistsAtPath:r]) {
+            return r;
+        }
+    }
+    
+    return nil;
 }
 
 + (BOOL)optimizePNGsInDirectory:(NSString *)directoryPath {

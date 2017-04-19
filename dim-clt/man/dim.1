@@ -1,0 +1,48 @@
+.Dd January 26, 2017
+.Dt DIM 1
+.Os Darwin
+.Sh NAME
+.Nm dim
+.Nd batch-create macOS document icons from an application icon
+.Sh SYNOPSIS
+.Nm
+.Op
+.Ar appIcon
+.Ar [destinationPath]
+.Ar [--labels one,two,three]
+.Ar [--baseicon iconPath] 
+.Ar [--force]
+.Ar [--help]
+.Ar [--version]
+.Sh DESCRIPTION
+.Nm
+is the command line counterpart to the Dim macOS application.
+It creates crips, high-quality macOS document icons from 
+an icns application icon file. See http://sveinbjorn.org/dim for 
+further details.
+.Pp
+The following option flags are supported (parsed in the order in which they
+are passed):
+.Bl -tag -width -Fl
+.It Fl f, -force
+Overwrite any pre-existing files or folders in destination path.
+.It Fl v, -version
+Print the version of this program
+.It Fl h, -help
+Print help and usage string
+.El
+.Pp
+Exits 0 on success, and >0 if an error occurs.
+.Sh FILES
+.Bl -tag -width "/usr/local/bin/dim" -compact
+.It Pa /usr/local/bin/dim
+program binary
+.El
+.Sh EXAMPLES
+dim AppIcon.icns
+.Pp
+dim Icon.icns --labels FLIF,WEBP,BPG
+.Pp
+dim icon.icns
+.Sh AUTHORS
+.An Sveinbjorn Thordarson <sveinbjornt@gmail.com>
