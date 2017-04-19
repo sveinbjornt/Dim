@@ -27,7 +27,7 @@ static void PrintHelp(void);
 static void NSPrintErr(NSString *format, ...);
 static void NSPrint(NSString *format, ...);
 
-static const char optstring[] = "b:z:x:y:l:iofshv";
+static const char optstring[] = "b:l:S:C:F:z:x:y:p:niofvh";
 
 NSString *baseIconPath = DEFAULT_DOCUMENT_ICON_PATH;
 
@@ -39,16 +39,21 @@ static BOOL overwrite = NO;
 static float overlaySize = DEFAULT_OVERLAY_SIZE;
 static float xoffset = 0;
 static float yoffset = 0;
+static float opacity = 1.0f;
 
 static struct option long_options[] =
 {
     {"baseicon",                required_argument,      0,  'b'},
     
     {"labels",                  required_argument,      0,  'l'},
+    {"label-size",              required_argument,      0,  'S'},
+    {"label-color",             required_argument,      0,  'C'},
+    {"label-font",              required_argument,      0,  'F'},
     
     {"overlay-size",            required_argument,      0,  'z'},
     {"xoffset",                 required_argument,      0,  'x'},
     {"yoffset",                 required_argument,      0,  'y'},
+    {"overlay-opacity",         required_argument,      0,  'p'},
     
     {"iconset-only",            no_argument,            0,  'n'},
     {"icns-only",               no_argument,            0,  'i'},
@@ -80,6 +85,18 @@ int main(int argc, const char * argv[]) { @autoreleasepool {
                 NSString *argStr = @(optarg);
                 [labels addObjectsFromArray:[argStr componentsSeparatedByString:@","]];
             }
+                break;
+            
+            case 'S':
+                // label size
+                break;
+                
+            case 'C':
+                // label color
+                break;
+                
+            case 'F':
+                // label font
                 break;
                 
             case 'b':
@@ -113,7 +130,11 @@ int main(int argc, const char * argv[]) { @autoreleasepool {
             case 'y':
                 yoffset = [@(optarg) floatValue];
                 break;
-            
+                
+            case 'p':
+                opacity = [@(optarg) floatValue];
+                break;
+                
             // print version
             case 'v':
             {
@@ -175,6 +196,7 @@ int main(int argc, const char * argv[]) { @autoreleasepool {
     composition.overlaySize = overlaySize;
     composition.overlayXOffset = xoffset;
     composition.overlayYOffset = yoffset;
+    composition.overlayOpacity = opacity;
     
     // Create output path
     NSString *name = [[overlayIconPath lastPathComponent] stringByDeletingPathExtension];

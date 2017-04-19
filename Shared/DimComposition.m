@@ -60,6 +60,7 @@ static NSRect CenterNSRectInNSRect(NSRect smallRect, NSRect bigRect) {
         _overlaySize = DEFAULT_OVERLAY_SIZE;
         _overlayXOffset = 0.f;
         _overlayYOffset = 0.f;
+        _overlayOpacity = 1.0f;
         
         if (baseImage == nil || overlayImage == nil) {
             return nil;
@@ -117,8 +118,8 @@ static NSRect CenterNSRectInNSRect(NSRect smallRect, NSRect bigRect) {
     CGFloat width = size.width;
     CGFloat height = size.height;
 
-    NSBitmapImageRep *baseRep = [baseImage representationForSize:width scale:scale];
-    NSBitmapImageRep *overRep = [overlayImage representationForSize:width scale:scale];
+    NSBitmapImageRep *baseRep = [baseImage bestRepresentationForSize:width scale:scale];
+    NSBitmapImageRep *overRep = [overlayImage bestRepresentationForSize:width scale:scale];
     
     // Create a bitmap graphics context of the given size
     CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
@@ -129,6 +130,8 @@ static NSRect CenterNSRectInNSRect(NSRect smallRect, NSRect bigRect) {
                                                  0,
                                                  colorSpace,
                                                  kCGImageAlphaPremultipliedLast);
+    
+    CGContextSetInterpolationQuality(context, kCGInterpolationHigh);
     
     CGContextSetRGBFillColor(context, (CGFloat)0.0, (CGFloat)0.0, (CGFloat)0.0, (CGFloat)0.0);
     
@@ -146,8 +149,11 @@ static NSRect CenterNSRectInNSRect(NSRect smallRect, NSRect bigRect) {
 
     // Draw images
     CGContextDrawImage(context, docRect, baseRep.CGImage);
+    
+    CGContextSetAlpha(context, self.overlayOpacity);
     CGContextDrawImage(context, dstRect, overRep.CGImage);
-
+    CGContextSetAlpha(context, 1.0f);
+    
     // Get image from context
     CGImageRef cgImage = CGBitmapContextCreateImage(context);
     

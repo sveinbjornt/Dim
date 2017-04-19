@@ -13,13 +13,9 @@
 - (NSBitmapImageRep *)representationForSize:(CGFloat)width scale:(CGFloat)scale {
     for (NSBitmapImageRep *imgRep in [self representations]) {
         
-//        NSLog(@"----------------");
-//        NSLog([imgRep description]);
+        CGFloat repScale = imgRep.pixelsWide / imgRep.size.width;
         
-        if (scale == 1.0 && imgRep.pixelsWide == width) {
-            return imgRep;
-        }
-        if (scale == 2.0 && imgRep.pixelsWide == width * 2) {
+        if (repScale == scale && (imgRep.pixelsWide / repScale) == width) {
             return imgRep;
         }
     }
@@ -27,7 +23,81 @@
 }
 
 - (NSBitmapImageRep *)bestRepresentationForSize:(CGFloat)width scale:(CGFloat)scale {
-    return [self representationForSize:width scale:scale];
+    NSBitmapImageRep *rep = [self representationForSize:width scale:scale];
+    if (rep == nil) {
+        
+        // Try to get a higher scale version
+        if (scale == 1.0) {
+            rep = [self representationForSize:width/2 scale:2.0];
+            if (rep) {
+                return rep;
+            }
+            rep = [self representationForSize:width scale:2.0];
+            if (rep) {
+                return rep;
+            }
+            rep = [self representationForSize:width*2 scale:1.0];
+            if (rep) {
+                return rep;
+            }
+            rep = [self representationForSize:width*2 scale:2.0];
+            if (rep) {
+                return rep;
+            }
+            rep = [self representationForSize:width*4 scale:1.0];
+            if (rep) {
+                return rep;
+            }
+            rep = [self representationForSize:width/2 scale:1.0];
+            if (rep) {
+                return rep;
+            }
+            rep = [self representationForSize:width/2 scale:2.0];
+            if (rep) {
+                return rep;
+            }
+            rep = [self representationForSize:width/4 scale:1.0];
+            if (rep) {
+                return rep;
+            }
+        }
+        // Try to find lower scale version of larger image
+        if (scale == 2.0) {
+            rep = [self representationForSize:width*2 scale:1.0];
+            if (rep) {
+                return rep;
+            }
+            rep = [self representationForSize:width*2 scale:2.0];
+            if (rep) {
+                return rep;
+            }
+            rep = [self representationForSize:width*4 scale:1.0];
+            if (rep) {
+                return rep;
+            }
+            // OK, at this point we'll have to start looking for
+            // lower resolution representations to scale up
+            rep = [self representationForSize:width scale:1.0];
+            if (rep) {
+                return rep;
+            }
+            rep = [self representationForSize:width/2 scale:2.0];
+            if (rep) {
+                return rep;
+            }
+            rep = [self representationForSize:width/2 scale:1.0];
+            if (rep) {
+                return rep;
+            }
+            rep = [self representationForSize:width/4 scale:1.0];
+            if (rep) {
+                return rep;
+            }
+        }
+        
+        
+    }
+    return rep;
 }
 
 - (void)printRepresentations {

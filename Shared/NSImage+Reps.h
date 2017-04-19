@@ -11,6 +11,7 @@
 @interface NSImage (Reps)
 
 - (NSBitmapImageRep *)representationForSize:(CGFloat)width scale:(CGFloat)scale;
+- (NSBitmapImageRep *)bestRepresentationForSize:(CGFloat)width scale:(CGFloat)scale;
 - (void)printRepresentations;
 
 @end

@@ -14,6 +14,7 @@
 @property CGFloat overlaySize;
 @property CGFloat overlayXOffset;
 @property CGFloat overlayYOffset;
+@property CGFloat overlayOpacity;
 
 - (instancetype)initWithBaseImage:(NSImage *)base overlayImage:(NSImage *)overlay;
 - (BOOL)createIconSetAtPath:(NSString *)path;
