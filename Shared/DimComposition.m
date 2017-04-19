@@ -139,6 +139,11 @@ static NSRect CenterNSRectInNSRect(NSRect smallRect, NSRect bigRect) {
     NSRect overlaySizeRect = NSMakeRect(0, 0, overlayPropSize * docRect.size.width, overlayPropSize * docRect.size.height);
     NSRect dstRect = CenterNSRectInNSRect(overlaySizeRect, docRect);
 
+    // Adjust according to x and y offsets
+    NSInteger unit = docRect.size.width / 2;
+    dstRect.origin.x += ((self.overlayXOffset/100.f) * unit);
+    dstRect.origin.y += ((self.overlayYOffset/100.f) * unit);
+
     // Draw images
     CGContextDrawImage(context, docRect, baseRep.CGImage);
     CGContextDrawImage(context, dstRect, overRep.CGImage);

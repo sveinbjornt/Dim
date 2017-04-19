@@ -265,6 +265,7 @@
 				F442E0401EA64A3000BAD80C /* Sources */,
 				F442E0411EA64A3000BAD80C /* Frameworks */,
 				F442E0421EA64A3000BAD80C /* CopyFiles */,
+				F442E06E1EA7883500BAD80C /* Create HTML document from man page */,
 			);
 			buildRules = (
 			);
@@ -347,6 +348,20 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		F442E06E1EA7883500BAD80C /* Create HTML document from man page */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Create HTML document from man page";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Create HTML document from man page\n/usr/bin/man dim-clt/man/dim.1 | dim-clt/man/cat2html/cat2html > dim-clt/man/dim.man.html";
+		};
 		F4C6CCFD1C807E7600B6924E /* Run Script To Set CFBundleVersion to Build Number */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -550,6 +565,7 @@
 				F442E04A1EA64A3000BAD80C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		F4F14CE71C66547D002A2402 /* Build configuration list for PBXProject "Dim" */ = {
 			isa = XCConfigurationList;

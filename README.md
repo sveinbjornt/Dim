@@ -2,11 +2,11 @@
 
 <img align="right" src="images/dim_icon.png" style="float: right; margin-left: 30px;" width="128" height="128">
 
-**Dim** is a an app that creates high quality document icons for macOS applications. It supports batch labelling and extensive customization, and generates crisp, good-looking document icons in all sizes. A command line tool counterpart, `dim` is also provided for scripting and automation purposes
+**Dim** is an app that creates compact, high-quality document icons for macOS applications. It supports batch labelling and extensive customization, and produces crisp document icons that look good in all sizes. A command line tool counterpart, `dim` is also provided for scripting and automation purposes
 
 Dim is free, open source software distributed under a three-clause BSD license (see below).
 
-**March 2016: Dim is currently a work in progress and is not yet available as a downloadable binary**
+**April 2017: Dim is currently a work in progress and is not yet available as a downloadable binary**
 
 <!--## Download
 

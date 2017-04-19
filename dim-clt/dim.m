@@ -27,34 +27,46 @@ static void PrintHelp(void);
 static void NSPrintErr(NSString *format, ...);
 static void NSPrint(NSString *format, ...);
 
-static const char optstring[] = "b:z:l:iofshv";
+static const char optstring[] = "b:z:x:y:l:iofshv";
 
-static int iconsetOnly = NO; // default output is both iconset and icns
-static int icnsOnly = NO;
-static int optimizeImages = NO; // crush pngs with zopfli
-static int overwrite = NO;
+NSString *baseIconPath = DEFAULT_DOCUMENT_ICON_PATH;
+
+static BOOL iconsetOnly = NO; // default output is both iconset and icns
+static BOOL icnsOnly = NO;
+static BOOL optimizeImages = NO; // crush pngs with zopfli
+static BOOL overwrite = NO;
+
+static float overlaySize = DEFAULT_OVERLAY_SIZE;
+static float xoffset = 0;
+static float yoffset = 0;
 
 static struct option long_options[] =
 {
-    {"baseicon",                  required_argument,    0,                  'b'},
-    {"overlay-size",              required_argument,    0,                  'z'},
-    {"labels",                    required_argument,    0,                  'l'},
-    {"iconset-only",              no_argument,          0,                  's'},
-    {"icns-only",                 no_argument,          0,                  'i'},
-    {"optimize-images",           no_argument,          0,                  'o'},
-    {"force",                     no_argument,          0,                  'f'},
-    {"version",                   no_argument,          0,                  'v'},
-    {"help",                      no_argument,          0,                  'h'},
-    {0,                           0,                    0,                   0 }
+    {"baseicon",                required_argument,      0,  'b'},
+    
+    {"labels",                  required_argument,      0,  'l'},
+    
+    {"overlay-size",            required_argument,      0,  'z'},
+    {"xoffset",                 required_argument,      0,  'x'},
+    {"yoffset",                 required_argument,      0,  'y'},
+    
+    {"iconset-only",            no_argument,            0,  'n'},
+    {"icns-only",               no_argument,            0,  'i'},
+    
+    {"optimize-images",         no_argument,            0,  'o'},
+    
+    {"force",                   no_argument,            0,  'f'},
+    
+    {"version",                 no_argument,            0,  'v'},
+    {"help",                    no_argument,            0,  'h'},
+    {0,                         0,                      0,    0}
 };
 
 int main(int argc, const char * argv[]) { @autoreleasepool {
     
     NSFileManager *fm = [NSFileManager defaultManager];
-    NSString *baseIconPath = DEFAULT_DOCUMENT_ICON_PATH;
     NSMutableArray *labels = [NSMutableArray array];
     NSString *destination;
-    CGFloat overlaySize = DEFAULT_OVERLAY_SIZE;
     
     int optch;
     int long_index = 0;
@@ -73,20 +85,12 @@ int main(int argc, const char * argv[]) { @autoreleasepool {
             case 'b':
                 baseIconPath = @(optarg);
                 break;
-                
-            // print version
-            case 'v':
-            {
-                PrintVersion();
-                exit(0);
-            }
-                break;
             
             case 'f':
                 overwrite = YES;
                 break;
                 
-            case 's':
+            case 'n':
                 iconsetOnly = YES;
                 break;
                 
@@ -102,6 +106,22 @@ int main(int argc, const char * argv[]) { @autoreleasepool {
                 overlaySize = [@(optarg) floatValue];
                 break;
             
+            case 'x':
+                xoffset = [@(optarg) floatValue];
+                break;
+                
+            case 'y':
+                yoffset = [@(optarg) floatValue];
+                break;
+            
+            // print version
+            case 'v':
+            {
+                PrintVersion();
+                exit(0);
+            }
+                break;
+                
             // print help with list of options
             case 'h':
             default:
@@ -153,6 +173,8 @@ int main(int argc, const char * argv[]) { @autoreleasepool {
     
     // configure composition based on parameters
     composition.overlaySize = overlaySize;
+    composition.overlayXOffset = xoffset;
+    composition.overlayYOffset = yoffset;
     
     // Create output path
     NSString *name = [[overlayIconPath lastPathComponent] stringByDeletingPathExtension];
@@ -182,20 +204,21 @@ int main(int argc, const char * argv[]) { @autoreleasepool {
         NSPrintErr(@"Error creating icon set %@", destination);
         exit(1);
     }
+    
+    // Optimization
+    if (optimizeImages) {
+        NSPrint(@"Optimizing images in directory %@", destination);
+        [ZopfliPNG optimizePNGsInDirectory:destination];
+    }
+    
+    // create icns file from iconset
     if (iconsetOnly == NO) {
-        // create icns file from iconset
         NSString *icnsPath = [NSString stringWithFormat:@"%@/%@",
                               [destination stringByDeletingLastPathComponent], icnsFileName];
 
         [DimComposition convertIconSet:destination toIcns:icnsPath];
     }
-    
-    // Optimization
-    if (optimizeImages || 1) {
-        NSPrint(@"Optimizing images in directory %@", destination);
-        [ZopfliPNG optimizePNGsInDirectory:destination];
-    }
-    
+
     // Get rid of iconset if user wants icns only
     if (icnsOnly) {
         [fm removeItemAtPath:destination error:nil];
