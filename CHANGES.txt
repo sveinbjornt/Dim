@@ -1,6 +1,6 @@
+TODO list for Dim
 
-
-* Command line tool
+DONE * Command line tool
 
 * Sharpening for icons at small sizes
 * Shared class to draw icons

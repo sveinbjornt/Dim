@@ -230,7 +230,11 @@ int main(int argc, const char * argv[]) { @autoreleasepool {
     // Optimization
     if (optimizeImages) {
         NSPrint(@"Optimizing images in directory %@", destination);
-        [ZopfliPNG optimizePNGsInDirectory:destination];
+        NSError *err;
+        BOOL success = [ZopfliPNG optimizePNGsInDirectory:destination error:&err];
+        if (!success) {
+            NSPrintErr(@"Error optimizing images: %@", [err localizedDescription]);
+        }
     }
     
     // create icns file from iconset
