@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <AppKit/AppKit.h>
 
 @interface DimComposition : NSObject
 
@@ -15,6 +16,10 @@
 @property CGFloat overlayXOffset;
 @property CGFloat overlayYOffset;
 @property CGFloat overlayOpacity;
+
+@property CGFloat labelFontSize;
+@property NSFont *labelFont;
+@property NSColor *labelColor;
 
 - (instancetype)initWithBaseImage:(NSImage *)base overlayImage:(NSImage *)overlay;
 - (BOOL)createIconSetAtPath:(NSString *)path;

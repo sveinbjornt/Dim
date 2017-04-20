@@ -7,20 +7,13 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <stdio.h>
-#import <unistd.h>
-#import <errno.h>
-#import <sys/stat.h>
-#import <limits.h>
-#import <string.h>
-#import <fcntl.h>
-#import <errno.h>
 #import <getopt.h>
 
 #import "Common.h"
 #import "DimComposition.h"
 #import "IconFamily.h"
 #import "ZopfliPNG.h"
+#import "NSColor+HexTools.h"
 
 static void PrintVersion(void);
 static void PrintHelp(void);
@@ -28,18 +21,6 @@ static void NSPrintErr(NSString *format, ...);
 static void NSPrint(NSString *format, ...);
 
 static const char optstring[] = "b:l:S:C:F:z:x:y:p:niofvh";
-
-NSString *baseIconPath = DEFAULT_DOCUMENT_ICON_PATH;
-
-static BOOL iconsetOnly = NO; // default output is both iconset and icns
-static BOOL icnsOnly = NO;
-static BOOL optimizeImages = NO; // crush pngs with zopfli
-static BOOL overwrite = NO;
-
-static float overlaySize = DEFAULT_OVERLAY_SIZE;
-static float xoffset = 0;
-static float yoffset = 0;
-static float opacity = 1.0f;
 
 static struct option long_options[] =
 {
@@ -51,9 +32,13 @@ static struct option long_options[] =
     {"label-font",              required_argument,      0,  'F'},
     
     {"overlay-size",            required_argument,      0,  'z'},
-    {"xoffset",                 required_argument,      0,  'x'},
-    {"yoffset",                 required_argument,      0,  'y'},
+    {"overlay-xoffset",         required_argument,      0,  'x'},
+    {"overlay-yoffset",         required_argument,      0,  'y'},
     {"overlay-opacity",         required_argument,      0,  'p'},
+    {"overlay-sharpen",         required_argument,      0,  's'},
+    
+    {"representations",         required_argument,      0,  'r'},
+    {"no-high-res",             no_argument,            0,  'g'},
     
     {"iconset-only",            no_argument,            0,  'n'},
     {"icns-only",               no_argument,            0,  'i'},
@@ -70,8 +55,30 @@ static struct option long_options[] =
 int main(int argc, const char * argv[]) { @autoreleasepool {
     
     NSFileManager *fm = [NSFileManager defaultManager];
-    NSMutableArray *labels = [NSMutableArray array];
     NSString *destination;
+    
+    NSString *baseIconPath = DEFAULT_DOCUMENT_ICON_PATH;
+    
+    NSMutableArray *labels = [NSMutableArray array];
+    float labelFontSize = 1.0;
+    NSColor *labelColor = [NSColor grayColor];
+    NSFont *labelFont = [NSFont fontWithName:@"Helvetica" size:10];
+    
+    BOOL iconsetOnly = NO; // default output is both iconset and icns
+    BOOL icnsOnly = NO;    // default output is both iconset and icns
+    BOOL optimizeImages = NO; // crush pngs with zopfli
+    BOOL overwrite = NO;
+    
+    float overlaySize = DEFAULT_OVERLAY_SIZE;
+    float xoffset = 0;
+    float yoffset = 0;
+    float opacity = 1.0f;
+    float overlaySharpenSize = 2048;
+    
+    NSMutableSet *representations = [NSMutableSet set];
+    BOOL excludeHighResReps = NO;
+    
+    // -------------------------------------
     
     int optch;
     int long_index = 0;
@@ -89,14 +96,32 @@ int main(int argc, const char * argv[]) { @autoreleasepool {
             
             case 'S':
                 // label size
+                labelFontSize = [@(optarg) floatValue];
                 break;
                 
             case 'C':
+            {
                 // label color
+                NSString *arg = @(optarg);
+                NSColor *c = [NSColor colorFromHexString:arg];
+                if (c) {
+                    labelColor = c;
+                } else {
+                    NSPrintErr(@"Unable to create color from '%@'. Using default color.", arg);
+                }
+            }
                 break;
                 
             case 'F':
-                // label font
+            {
+                NSString *arg = @(optarg);
+                NSFont *f = [NSFont fontWithName:arg size:10];
+                if (f) {
+                    labelFont = f;
+                } else {
+                    NSPrintErr(@"Unable to instantiate font '%@'. Using default font.", arg);
+                }
+            }
                 break;
                 
             case 'b':
@@ -133,6 +158,22 @@ int main(int argc, const char * argv[]) { @autoreleasepool {
                 
             case 'p':
                 opacity = [@(optarg) floatValue];
+                break;
+                
+            case 's':
+                overlaySharpenSize = [@(optarg) floatValue];
+                break;
+                
+            case 'r':
+            {
+                NSString *arg = @(optarg);
+                NSArray *items = [arg componentsSeparatedByString:@","];
+                [representations addObjectsFromArray:items];
+            }
+                break;
+                
+            case 'g':
+                excludeHighResReps = YES;
                 break;
                 
             // print version
@@ -172,7 +213,7 @@ int main(int argc, const char * argv[]) { @autoreleasepool {
     NSString *overlayIconPath = remainingArgs[0];
     
     if ([remainingArgs count] >= 2) {
-        destination = remainingArgs[1];
+        destination = remainingArgs[1]; // we're receiving destination path
     } else {
         destination = [overlayIconPath stringByDeletingLastPathComponent];
     }
@@ -197,6 +238,9 @@ int main(int argc, const char * argv[]) { @autoreleasepool {
     composition.overlayXOffset = xoffset;
     composition.overlayYOffset = yoffset;
     composition.overlayOpacity = opacity;
+    composition.labelFontSize = labelFontSize;
+    composition.labelFont = labelFont;
+    composition.labelColor = labelColor;
     
     // Create output path
     NSString *name = [[overlayIconPath lastPathComponent] stringByDeletingPathExtension];

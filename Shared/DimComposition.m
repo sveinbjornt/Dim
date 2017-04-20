@@ -7,7 +7,6 @@
 //
 
 #import "DimComposition.h"
-#import <AppKit/AppKit.h>
 #import "NSImage+Reps.h"
 #import "Common.h"
 
@@ -39,7 +38,7 @@ static NSRect CenterNSRectInNSRect(NSRect smallRect, NSRect bigRect) {
     centerRect.origin.x = (bigRect.size.width - smallRect.size.width) / 2.0;
     centerRect.origin.y = (bigRect.size.height - smallRect.size.height) / 2.0;
     
-    return (centerRect);
+    return centerRect;
 }
 
 #pragma mark -
@@ -86,8 +85,6 @@ static NSRect CenterNSRectInNSRect(NSRect smallRect, NSRect bigRect) {
         }
     }
     
-    NSLog(@"Creating at %@", destinationPath);
-
     // Create each rep in turn
     for (NSImageRep *rep in [baseImage representations]) {
         if (![rep isKindOfClass:[NSBitmapImageRep class]]) {
