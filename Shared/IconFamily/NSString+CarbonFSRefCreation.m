@@ -45,8 +45,13 @@
     // Try to create an FSRef from the URL.  (If the specified file doesn't exist, this
     // function will return false, but if we've reached this code we've already insured
     // that the file exists.)
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
+
     gotFSRef = CFURLGetFSRef( urlRef, fsRef );
     CFRelease( urlRef );
+
+#pragma GCC diagnostic pop
 
     if (!gotFSRef) {
 //        printf( "** Couldn't get an FSRef for the file.\n" );

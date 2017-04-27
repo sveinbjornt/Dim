@@ -11,6 +11,9 @@
 
 @interface DimComposition : NSObject
 
+@property (assign, nonatomic) NSImage *baseImage;
+@property (assign, nonatomic) NSImage *overlayImage;
+
 @property BOOL forceAllResolutions;
 @property CGFloat overlaySize;
 @property CGFloat overlayXOffset;
@@ -18,13 +21,14 @@
 @property CGFloat overlayOpacity;
 
 @property CGFloat labelFontSize;
-@property NSFont *labelFont;
-@property NSColor *labelColor;
+@property (assign, nonatomic) NSFont *labelFont;
+@property (assign, nonatomic) NSColor *labelColor;
 
 - (instancetype)initWithBaseImage:(NSImage *)base overlayImage:(NSImage *)overlay;
-- (BOOL)createIconSetAtPath:(NSString *)path;
-- (BOOL)createIcnsAtPath:(NSString *)path;
 
-+ (BOOL)convertIconSet:(NSString *)iconsetPath toIcns:(NSString *)outputIcnsPath;
+- (CGImageRef)newCGImageForSize:(NSSize)size scale:(CGFloat)scale;
+- (void)drawSize:(NSSize)size scale:(CGFloat)scale inContext:(CGContextRef)context;
+
+- (BOOL)createIconSetAtPath:(NSString *)path;
 
 @end

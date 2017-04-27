@@ -25,6 +25,10 @@
 #import "NSString+CarbonFSRefCreation.h"
 #import <Accelerate/Accelerate.h>
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
+
+
 // Necessary on 10.5 for Preview's "New with Clipboard" menu item to see the IconFamily data.
 #define ICONFAMILY_UTI @"com.apple.icns"
 
@@ -1182,7 +1186,6 @@
         CloseResFile( file );
         return NO;
     }
-
     if( compat )
     {
         [self addResourceType:kLarge8BitData asResID:kCustomIconResource];
@@ -1820,4 +1823,6 @@
     return YES;
 }
 @end
+
+#pragma GCC diagnostic pop
 

@@ -45,8 +45,7 @@ static NSRect CenterNSRectInNSRect(NSRect smallRect, NSRect bigRect) {
 
 @interface DimComposition()
 {
-    NSImage *baseImage;
-    NSImage *overlayImage;
+
 }
 @end
 
@@ -54,19 +53,17 @@ static NSRect CenterNSRectInNSRect(NSRect smallRect, NSRect bigRect) {
 
 - (instancetype)initWithBaseImage:(NSImage *)base overlayImage:(NSImage *)overlay {
     if ((self = [super init])) {
-        baseImage = base;
-        overlayImage = overlay;
+        _baseImage = base;
+        _overlayImage = overlay;
         _overlaySize = DEFAULT_OVERLAY_SIZE;
-        _overlayXOffset = 0.f;
-        _overlayYOffset = 0.f;
-        _overlayOpacity = 1.0f;
-        
-        if (baseImage == nil || overlayImage == nil) {
-            return nil;
-        }
+        _overlayXOffset = DEFAULT_OVERLAY_XOFFSET;
+        _overlayYOffset = DEFAULT_OVERLAY_YOFFSET;
+        _overlayOpacity = DEFAULT_OVERLAY_OPACITY;
     }
     return self;
 }
+
+#pragma mark -
 
 - (BOOL)createIconSetAtPath:(NSString *)destinationPath {
     
@@ -86,7 +83,7 @@ static NSRect CenterNSRectInNSRect(NSRect smallRect, NSRect bigRect) {
     }
     
     // Create each rep in turn
-    for (NSImageRep *rep in [baseImage representations]) {
+    for (NSImageRep *rep in [self.baseImage representations]) {
         if (![rep isKindOfClass:[NSBitmapImageRep class]]) {
             continue;
         }
@@ -103,7 +100,7 @@ static NSRect CenterNSRectInNSRect(NSRect smallRect, NSRect bigRect) {
         NSString *outPath = [NSString stringWithFormat:@"%@/%@_%@.png", destinationPath, baseName, identifier];
         NSLog(@"Generating %@", outPath);
         
-        CGImageRef img = [self newImageForSize:size scale:scale];
+        CGImageRef img = [self newCGImageForSize:size scale:scale];
         CGImageWriteToFile(img, outPath, (NSString *)kUTTypePNG);
         CGImageRelease(img);
     }
@@ -111,22 +108,34 @@ static NSRect CenterNSRectInNSRect(NSRect smallRect, NSRect bigRect) {
     return YES;
 }
 
-- (CGImageRef)newImageForSize:(NSSize)size scale:(CGFloat)scale {
-    CGFloat width = size.width;
-    CGFloat height = size.height;
-
-    NSBitmapImageRep *baseRep = [baseImage bestRepresentationForSize:width scale:scale];
-    NSBitmapImageRep *overRep = [overlayImage bestRepresentationForSize:width scale:scale];
-    
+- (CGImageRef)newCGImageForSize:(NSSize)size scale:(CGFloat)scale {
     // Create a bitmap graphics context of the given size
     CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
     CGContextRef context = CGBitmapContextCreate(NULL,
-                                                 width * scale,
-                                                 height * scale,
+                                                 size.width * scale,
+                                                 size.height * scale,
                                                  8,
                                                  0,
                                                  colorSpace,
                                                  kCGImageAlphaPremultipliedLast);
+    // draw icon
+    [self drawSize:size scale:scale inContext:context];
+    
+    // Get image from context
+    CGImageRef cgImage = CGBitmapContextCreateImage(context);
+    
+    CGColorSpaceRelease(colorSpace);
+    CGContextRelease(context);
+    
+    return cgImage;
+}
+
+- (void)drawSize:(NSSize)size scale:(CGFloat)scale inContext:(CGContextRef)context {
+    CGFloat width = size.width;
+    CGFloat height = size.height;
+    
+    NSBitmapImageRep *baseRep = [self.baseImage bestRepresentationForSize:width scale:scale];
+    NSBitmapImageRep *overRep = [self.overlayImage bestRepresentationForSize:width scale:scale];
     
     CGContextSetInterpolationQuality(context, kCGInterpolationHigh);
     
@@ -138,48 +147,18 @@ static NSRect CenterNSRectInNSRect(NSRect smallRect, NSRect bigRect) {
     // Scale down dest rect
     NSRect overlaySizeRect = NSMakeRect(0, 0, overlayPropSize * docRect.size.width, overlayPropSize * docRect.size.height);
     NSRect dstRect = CenterNSRectInNSRect(overlaySizeRect, docRect);
-
+    
     // Adjust according to x and y offsets
     NSInteger unit = docRect.size.width / 2;
     dstRect.origin.x += ((self.overlayXOffset/100.f) * unit);
     dstRect.origin.y += ((self.overlayYOffset/100.f) * unit);
-
+    
     // Draw images
     CGContextDrawImage(context, docRect, baseRep.CGImage);
     
     CGContextSetAlpha(context, self.overlayOpacity);
     CGContextDrawImage(context, dstRect, overRep.CGImage);
     CGContextSetAlpha(context, 1.0f);
-    
-    // Get image from context
-    CGImageRef cgImage = CGBitmapContextCreateImage(context);
-    
-    CGColorSpaceRelease(colorSpace);
-    CGContextRelease(context);
-    
-    return cgImage;
-}
-
-- (BOOL)createIcnsAtPath:(NSString *)path {
-    return YES;
-}
-
-+ (BOOL)convertIconSet:(NSString *)iconsetPath toIcns:(NSString *)outputIcnsPath {
-    NSString *iconutilPath = ICONUTIL_PATH;
-    if (![[NSFileManager defaultManager] fileExistsAtPath:iconutilPath]) {
-        NSLog(@"%@ not installed on this system", iconutilPath);
-        return NO;
-    }
-    
-    NSTask *task = [[NSTask alloc] init];
-    task.launchPath = iconutilPath;
-    task.arguments = @[@"--convert", @"icns", @"--output", outputIcnsPath, iconsetPath];
-    task.standardOutput = [NSFileHandle fileHandleWithNullDevice];
-    task.standardError = [NSFileHandle fileHandleWithNullDevice];
-    [task launch];
-    [task waitUntilExit];
-    
-    return YES;
 }
 
 @end

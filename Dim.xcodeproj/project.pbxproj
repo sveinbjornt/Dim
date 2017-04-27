@@ -18,6 +18,8 @@
 		F442E05C1EA6846600BAD80C /* NSImage+Reps.m in Sources */ = {isa = PBXBuildFile; fileRef = F442E05A1EA6846600BAD80C /* NSImage+Reps.m */; };
 		F442E0601EA6848D00BAD80C /* dim.m in Sources */ = {isa = PBXBuildFile; fileRef = F442E05F1EA6848D00BAD80C /* dim.m */; };
 		F442E07C1EA8DA6C00BAD80C /* NSColor+HexTools.m in Sources */ = {isa = PBXBuildFile; fileRef = F442E07B1EA8DA6C00BAD80C /* NSColor+HexTools.m */; };
+		F499513D1EB221F9002656A8 /* IconUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = F499513C1EB221F9002656A8 /* IconUtils.m */; };
+		F499513E1EB221F9002656A8 /* IconUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = F499513C1EB221F9002656A8 /* IconUtils.m */; };
 		F4C6CCFF1C80A53600B6924E /* RegistrationDefaults.plist in Resources */ = {isa = PBXBuildFile; fileRef = F4C6CCFE1C80A53600B6924E /* RegistrationDefaults.plist */; };
 		F4F14CF11C66547D002A2402 /* DimAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F4F14CF01C66547D002A2402 /* DimAppDelegate.m */; };
 		F4F14CF61C66547D002A2402 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F4F14CF51C66547D002A2402 /* Assets.xcassets */; };
@@ -66,6 +68,8 @@
 		F442E06D1EA6D72100BAD80C /* update_website_docs.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = update_website_docs.sh; sourceTree = "<group>"; };
 		F442E07A1EA8DA6C00BAD80C /* NSColor+HexTools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSColor+HexTools.h"; sourceTree = "<group>"; };
 		F442E07B1EA8DA6C00BAD80C /* NSColor+HexTools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSColor+HexTools.m"; sourceTree = "<group>"; };
+		F499513B1EB221F9002656A8 /* IconUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IconUtils.h; sourceTree = "<group>"; };
+		F499513C1EB221F9002656A8 /* IconUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IconUtils.m; sourceTree = "<group>"; };
 		F4C6CCFB1C8077EB00B6924E /* CHANGES.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = CHANGES.txt; sourceTree = "<group>"; };
 		F4C6CCFC1C8077EB00B6924E /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		F4C6CCFE1C80A53600B6924E /* RegistrationDefaults.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = RegistrationDefaults.plist; sourceTree = "<group>"; };
@@ -224,6 +228,8 @@
 			children = (
 				F442E0521EA6845400BAD80C /* DimComposition.h */,
 				F442E0531EA6845400BAD80C /* DimComposition.m */,
+				F499513B1EB221F9002656A8 /* IconUtils.h */,
+				F499513C1EB221F9002656A8 /* IconUtils.m */,
 				F442E07D1EA8E1D300BAD80C /* NSColor+HexTools */,
 				F442E0611EA6873A00BAD80C /* NonInterpolatedImageView */,
 				F442E0621EA6874900BAD80C /* NSimage+Reps */,
@@ -396,6 +402,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F499513E1EB221F9002656A8 /* IconUtils.m in Sources */,
 				F442E0601EA6848D00BAD80C /* dim.m in Sources */,
 				F442E04F1EA66F6F00BAD80C /* ZopfliPNG.m in Sources */,
 				F442E04D1EA6573C00BAD80C /* NSString+CarbonFSRefCreation.m in Sources */,
@@ -410,6 +417,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F499513D1EB221F9002656A8 /* IconUtils.m in Sources */,
 				F442E0511EA6822E00BAD80C /* main.m in Sources */,
 				F442E0581EA6845D00BAD80C /* NonInterpolatedImageView.m in Sources */,
 				F4F14D101C665FE7002A2402 /* DimIconView.m in Sources */,

@@ -11,6 +11,7 @@
 
 #import "Common.h"
 #import "DimComposition.h"
+#import "IconUtils.h"
 #import "IconFamily.h"
 #import "ZopfliPNG.h"
 #import "NSColor+HexTools.h"
@@ -286,7 +287,7 @@ int main(int argc, const char * argv[]) { @autoreleasepool {
         NSString *icnsPath = [NSString stringWithFormat:@"%@/%@",
                               [destination stringByDeletingLastPathComponent], icnsFileName];
 
-        [DimComposition convertIconSet:destination toIcns:icnsPath];
+        [IconUtils convertIconSet:destination toIcns:icnsPath];
     }
 
     // Get rid of iconset if user wants icns only

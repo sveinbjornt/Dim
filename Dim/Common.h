@@ -6,9 +6,6 @@
 //  Copyright © 2016 Sveinbjorn Thordarson. All rights reserved.
 //
 
-#ifndef Common_h
-#define Common_h
-
 #define PROGRAM_NAME						@"Dim"
 #define PROGRAM_VERSION						@"1.0"
 #define	PROGRAM_WEBSITE						@"http://sveinbjorn.org/dim"
@@ -24,9 +21,12 @@
 #define DEFAULT_LABEL_FONT                  @"Helvetica"
 #define DEFAULT_LABEL_COLOR                 [NSColor grayColor]
 
-#define ICONUTIL_PATH                       @"/usr/bin/iconutil"
-
 #define DEFAULT_OVERLAY_SIZE                0.5
+#define DEFAULT_OVERLAY_XOFFSET             0.f
+#define DEFAULT_OVERLAY_YOFFSET             0.f
+#define DEFAULT_OVERLAY_OPACITY             1.0f
+
+#define DEFAULT_XOFFSET_WIIHOUT_LABEL       10.0f
 #define DEFAULT_YOFFSET_WIIHOUT_LABEL       10.0f
 
 #define DEFAULT_DOCUMENT_ICON_PATH  \
@@ -34,5 +34,3 @@
 
 #define DEFAULT_OVERLAY_ICON_PATH   \
 [[NSBundle mainBundle] pathForResource:@"AppIcon" ofType:@"icns"]
-
-#endif /* Common_h */

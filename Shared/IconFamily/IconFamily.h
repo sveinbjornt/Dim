@@ -24,6 +24,10 @@
 #import <Cocoa/Cocoa.h>
 #import <Carbon/Carbon.h>
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
+
+
 // This class is a Cocoa/Objective-C wrapper for the Mac OS X Carbon API's
 // "icon family" data type.  Its main purpose is to enable Cocoa applications
 // to easily create custom file icons from NSImage instances, and thus take
@@ -193,3 +197,5 @@ enum {
 + (BOOL)canInitWithPasteboard:(NSPasteboard *)pasteboard;
 
 @end
+
+#pragma GCC diagnostic pop

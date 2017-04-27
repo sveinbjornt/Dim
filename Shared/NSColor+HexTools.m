@@ -34,7 +34,7 @@
 
 + (NSColor *)colorFromHexString:(NSString *)inColorString {
     NSString *charStr = [inColorString substringFromIndex:1];
-    NSColor *result = NULL;
+    NSColor *result = nil;
     unsigned int colorCode = 0;
     unsigned char redByte = 0;
     unsigned char greenByte = 0;
@@ -42,7 +42,7 @@
     
     if (charStr != NULL) {
         NSScanner *scanner = [NSScanner scannerWithString:charStr];
-        (void)[scanner scanHexInt:&colorCode]; // ignore error
+        [scanner scanHexInt:&colorCode]; // ignore error
     }
     
     redByte = (unsigned char)(colorCode >> 16);

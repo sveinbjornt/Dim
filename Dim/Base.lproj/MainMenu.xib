@@ -1,8 +1,9 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" customObjectInstantitationMethod="direct">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="12118" systemVersion="16E195" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" customObjectInstantitationMethod="direct">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="9531"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="12118"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="NSApplication">
@@ -571,6 +572,7 @@
                     </menu>
                 </menuItem>
             </items>
+            <point key="canvasLocation" x="-46" y="104"/>
         </menu>
         <window title="Dim - Document Icon Maker" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" restorable="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" animationBehavior="default" id="QvC-M9-y7g">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
@@ -598,7 +600,7 @@
                             <outlet property="menu" destination="tiF-3q-2DS" id="2h3-gA-Vjp"/>
                         </connections>
                     </imageView>
-                    <slider identifier="Size" verticalHuggingPriority="750" id="C7B-ym-c5u">
+                    <slider identifier="overlaySize" verticalHuggingPriority="750" id="C7B-ym-c5u">
                         <rect key="frame" x="219" y="63" width="111" height="20"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <sliderCell key="cell" continuous="YES" state="on" alignment="left" maxValue="100" doubleValue="50" tickMarkPosition="above" sliderType="linear" id="1e4-Jw-8O4"/>
@@ -617,8 +619,8 @@
                             <binding destination="MFn-Uz-4Ka" name="value" keyPath="values.DocumentIconEnabled" id="nNJ-Er-kc2"/>
                         </connections>
                     </button>
-                    <button id="6yC-Pt-Ybx">
-                        <rect key="frame" x="188" y="246" width="98" height="18"/>
+                    <button misplaced="YES" id="6yC-Pt-Ybx">
+                        <rect key="frame" x="188" y="246" width="104" height="18"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <buttonCell key="cell" type="check" title="Overlay Icon" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="WcW-iw-T6r">
                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -632,7 +634,7 @@
                             </binding>
                         </connections>
                     </button>
-                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="7Wj-5K-TAM">
+                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" id="7Wj-5K-TAM">
                         <rect key="frame" x="167" y="164" width="13" height="17"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="+" id="zaW-gp-izN">
@@ -641,7 +643,7 @@
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
-                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="g8U-D9-Gqz">
+                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" id="g8U-D9-Gqz">
                         <rect key="frame" x="337" y="164" width="13" height="17"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="+" id="ao5-Uz-94D">
@@ -650,7 +652,7 @@
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
-                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="1NC-Qc-Kjw">
+                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" id="1NC-Qc-Kjw">
                         <rect key="frame" x="506" y="164" width="13" height="17"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="=" id="Fu2-EE-NCG">
@@ -667,7 +669,7 @@
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
                                 <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnReordering="NO" columnSelection="YES" columnResizing="NO" multipleSelection="NO" emptySelection="NO" autosaveColumns="NO" id="Wc9-k6-qDt">
-                                    <rect key="frame" x="0.0" y="0.0" width="142" height="19"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="142" height="136"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <size key="intercellSpacing" width="3" height="2"/>
                                     <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -693,7 +695,6 @@
                                     </connections>
                                 </tableView>
                             </subviews>
-                            <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                         </clipView>
                         <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="5Vd-I0-CQZ">
                             <rect key="frame" x="1" y="119" width="223" height="15"/>
@@ -715,7 +716,7 @@
                             <binding destination="MFn-Uz-4Ka" name="value" keyPath="values.LabelsEnabled" id="kBW-Ax-gkU"/>
                         </connections>
                     </button>
-                    <slider identifier="X" verticalHuggingPriority="750" id="lP8-g8-8TZ">
+                    <slider identifier="overlayXOffset" verticalHuggingPriority="750" id="lP8-g8-8TZ">
                         <rect key="frame" x="219" y="40" width="111" height="20"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <sliderCell key="cell" continuous="YES" state="on" alignment="left" maxValue="100" doubleValue="50" tickMarkPosition="above" sliderType="linear" id="G09-2z-NTu"/>
@@ -723,7 +724,7 @@
                             <binding destination="MFn-Uz-4Ka" name="value" keyPath="values.OverlayXOffset" id="bhu-Tw-xqn"/>
                         </connections>
                     </slider>
-                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="7Eq-x8-MB3">
+                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" id="7Eq-x8-MB3">
                         <rect key="frame" x="188" y="66" width="27" height="14"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Size" id="qaX-uB-BWo">
@@ -732,7 +733,7 @@
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
-                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="JwC-wF-0l9">
+                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" id="JwC-wF-0l9">
                         <rect key="frame" x="188" y="43" width="27" height="14"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="X" id="ELD-8J-fXh">
@@ -741,7 +742,7 @@
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
-                    <slider identifier="Y" verticalHuggingPriority="750" id="Jdg-vg-WM7">
+                    <slider identifier="overlayYOffset" verticalHuggingPriority="750" id="Jdg-vg-WM7">
                         <rect key="frame" x="219" y="17" width="111" height="20"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <sliderCell key="cell" continuous="YES" state="on" alignment="left" maxValue="100" doubleValue="50" tickMarkPosition="above" sliderType="linear" id="5Xq-kJ-2N4"/>
@@ -749,7 +750,7 @@
                             <binding destination="MFn-Uz-4Ka" name="value" keyPath="values.OverlayYOffset" id="OIk-gs-QqD"/>
                         </connections>
                     </slider>
-                    <slider identifier="Y" verticalHuggingPriority="750" id="C3v-J0-X0M">
+                    <slider identifier="labelSize" verticalHuggingPriority="750" id="C3v-J0-X0M">
                         <rect key="frame" x="385" y="40" width="118" height="20"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <sliderCell key="cell" continuous="YES" state="on" alignment="left" maxValue="200" doubleValue="100" tickMarkPosition="above" sliderType="linear" id="d3Q-f3-yCu"/>
@@ -757,7 +758,7 @@
                             <binding destination="MFn-Uz-4Ka" name="value" keyPath="values.LabelFontSizePercentage" id="iPM-g0-JbP"/>
                         </connections>
                     </slider>
-                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="p2J-yN-Vbt">
+                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" id="p2J-yN-Vbt">
                         <rect key="frame" x="188" y="20" width="27" height="14"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Y" id="cUL-s2-hFd">
@@ -777,19 +778,8 @@
                             <action selector="chooseFont:" target="eMU-ou-VsB" id="2AK-TP-Fyp"/>
                         </connections>
                     </button>
-                    <button verticalHuggingPriority="750" id="aOA-my-zgb">
-                        <rect key="frame" x="480" y="245" width="21" height="21"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="NSAddTemplate" imagePosition="overlaps" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="5TJ-8B-oz6">
-                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                            <font key="font" metaFont="system"/>
-                        </buttonCell>
-                        <connections>
-                            <action selector="addNewLabel:" target="eMU-ou-VsB" id="6gQ-Hd-AL7"/>
-                        </connections>
-                    </button>
-                    <button verticalHuggingPriority="750" id="Js8-Zm-mG5">
-                        <rect key="frame" x="138" y="245" width="21" height="21"/>
+                    <button verticalHuggingPriority="750" misplaced="YES" id="Js8-Zm-mG5">
+                        <rect key="frame" x="138" y="247" width="23" height="23"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <buttonCell key="cell" type="smallSquare" title="✎" bezelStyle="smallSquare" imagePosition="overlaps" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="l0g-f7-J40">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -799,8 +789,8 @@
                             <action selector="selectDocumentIcon:" target="eMU-ou-VsB" id="Ebg-KQ-n9z"/>
                         </connections>
                     </button>
-                    <button verticalHuggingPriority="750" id="E7u-1b-m7v">
-                        <rect key="frame" x="307" y="245" width="21" height="21"/>
+                    <button verticalHuggingPriority="750" misplaced="YES" id="E7u-1b-m7v">
+                        <rect key="frame" x="305" y="247" width="23" height="23"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <buttonCell key="cell" type="smallSquare" title="✎" bezelStyle="smallSquare" imagePosition="overlaps" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="CZp-fr-enY">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -810,21 +800,7 @@
                             <action selector="selectOverlayIcon:" target="eMU-ou-VsB" id="2YV-Mi-cKE"/>
                         </connections>
                     </button>
-                    <button verticalHuggingPriority="750" id="lVg-Iv-caf">
-                        <rect key="frame" x="460" y="245" width="21" height="21"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="NSRemoveTemplate" imagePosition="overlaps" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="1eE-WQ-Xek">
-                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                            <font key="font" metaFont="system"/>
-                            <string key="keyEquivalent" base64-UTF8="YES">
-CA
-</string>
-                        </buttonCell>
-                        <connections>
-                            <action selector="removeSelectedLabel:" target="eMU-ou-VsB" id="dWF-IX-IOb"/>
-                        </connections>
-                    </button>
-                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="eYi-S7-wvH">
+                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" id="eYi-S7-wvH">
                         <rect key="frame" x="355" y="43" width="32" height="14"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Size" id="fRk-QO-kaa">
@@ -845,7 +821,7 @@ CA
                             <binding destination="MFn-Uz-4Ka" name="value" keyPath="values.ShowRepresentations" id="FUo-gh-WB5"/>
                         </connections>
                     </button>
-                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="qY9-7h-Jxz">
+                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" id="qY9-7h-Jxz">
                         <rect key="frame" x="36" y="20" width="90" height="14"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Representations" id="LIT-3R-zUv">
@@ -865,7 +841,7 @@ CA
                             <action selector="restoreDefaults:" target="eMU-ou-VsB" id="jbD-ih-u0S"/>
                         </connections>
                     </button>
-                    <slider verticalHuggingPriority="750" id="vPv-Yh-1pi">
+                    <slider identifier="labelYoffset" verticalHuggingPriority="750" id="vPv-Yh-1pi">
                         <rect key="frame" x="446" y="17" width="57" height="20"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <sliderCell key="cell" continuous="YES" state="on" alignment="left" maxValue="100" doubleValue="50" tickMarkPosition="above" sliderType="linear" id="Wus-5d-mBg"/>
@@ -873,7 +849,7 @@ CA
                             <binding destination="MFn-Uz-4Ka" name="value" keyPath="values.LabelYOffset" id="7fy-ix-eFG"/>
                         </connections>
                     </slider>
-                    <slider verticalHuggingPriority="750" id="AqM-16-93H">
+                    <slider identifier="labelXoffset" verticalHuggingPriority="750" id="AqM-16-93H">
                         <rect key="frame" x="385" y="17" width="57" height="20"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <sliderCell key="cell" continuous="YES" state="on" alignment="left" maxValue="100" doubleValue="50" tickMarkPosition="above" sliderType="linear" id="TOp-2U-hwC"/>
@@ -881,7 +857,7 @@ CA
                             <binding destination="MFn-Uz-4Ka" name="value" keyPath="values.LabelXOffset" id="oFf-un-84g"/>
                         </connections>
                     </slider>
-                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="IoX-9m-N8G">
+                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" id="IoX-9m-N8G">
                         <rect key="frame" x="355" y="20" width="26" height="14"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="X/Y" id="N7d-ca-hNb">
@@ -913,7 +889,7 @@ DQ
 </string>
                         </buttonCell>
                     </button>
-                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="RLP-1H-pyY">
+                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" id="RLP-1H-pyY">
                         <rect key="frame" x="391" y="66" width="60" height="14"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" controlSize="small" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Helvetica" id="wNH-gn-Sqa">
@@ -929,6 +905,31 @@ DQ
                         <rect key="frame" x="531" y="105" width="128" height="128"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     </customView>
+                    <button verticalHuggingPriority="750" misplaced="YES" id="aOA-my-zgb">
+                        <rect key="frame" x="478" y="247" width="23" height="23"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="NSAddTemplate" imagePosition="overlaps" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="5TJ-8B-oz6">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="system"/>
+                        </buttonCell>
+                        <connections>
+                            <action selector="addNewLabel:" target="eMU-ou-VsB" id="6gQ-Hd-AL7"/>
+                        </connections>
+                    </button>
+                    <button verticalHuggingPriority="750" misplaced="YES" id="lVg-Iv-caf">
+                        <rect key="frame" x="456" y="247" width="23" height="23"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="NSRemoveTemplate" imagePosition="overlaps" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="1eE-WQ-Xek">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="system"/>
+                            <string key="keyEquivalent" base64-UTF8="YES">
+CA
+</string>
+                        </buttonCell>
+                        <connections>
+                            <action selector="removeSelectedLabel:" target="eMU-ou-VsB" id="dWF-IX-IOb"/>
+                        </connections>
+                    </button>
                 </subviews>
             </view>
             <connections>
@@ -1027,7 +1028,7 @@ CA
                         <action selector="decreaseRepScale:" target="DyM-CO-qs6" id="ClU-nq-bDM"/>
                     </connections>
                 </button>
-                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="5md-5v-H3g">
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" id="5md-5v-H3g">
                     <rect key="frame" x="493" y="13" width="56" height="17"/>
                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="100%" id="L7B-jy-XFD">
@@ -1067,7 +1068,7 @@ CA
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     <clipView key="contentView" id="B4s-1e-sUg">
                         <rect key="frame" x="1" y="1" width="684" height="286"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <view id="cox-r9-jI1" customClass="DimRepView">
                                 <rect key="frame" x="0.0" y="244" width="684" height="285"/>
