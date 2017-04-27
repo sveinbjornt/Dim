@@ -71,9 +71,9 @@ int main(int argc, const char * argv[]) { @autoreleasepool {
     BOOL overwrite = NO;
     
     float overlaySize = DEFAULT_OVERLAY_SIZE;
-    float xoffset = 0;
-    float yoffset = 0;
-    float opacity = 1.0f;
+    float xoffset = DEFAULT_OVERLAY_XOFFSET;
+    float yoffset = DEFAULT_OVERLAY_YOFFSET;
+    float opacity = DEFAULT_OVERLAY_OPACITY;
     float overlaySharpenSize = 2048;
     
     NSMutableSet *representations = [NSMutableSet set];
@@ -104,7 +104,17 @@ int main(int argc, const char * argv[]) { @autoreleasepool {
             {
                 // label color
                 NSString *arg = @(optarg);
-                NSColor *c = [NSColor colorFromHexString:arg];
+                NSColor *c;
+                if ([arg hasPrefix:@"#"]) {
+                    c = [NSColor colorFromHexString:arg];
+                } else {
+                    NSArray *comp = [arg componentsSeparatedByString:@":"];
+                    CGFloat alpha = [comp count] > 3 ? [comp[3] floatValue] : 1.0f;
+                    c = [NSColor colorWithRed:[comp[0] floatValue]
+                                        green:[comp[1] floatValue]
+                                         blue:[comp[2] floatValue]
+                                        alpha:alpha];
+                }
                 if (c) {
                     labelColor = c;
                 } else {
